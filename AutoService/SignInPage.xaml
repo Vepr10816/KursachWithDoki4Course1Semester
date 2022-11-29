@@ -1,0 +1,42 @@
+﻿<Page x:Class="AutoService.SignInPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoService"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SignInPage" >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontFamily="Ink Free" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="30" Text="Авторизация" Grid.Column="1"/>
+        <TextBox Grid.Row="1" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" VerticalContentAlignment="Center" FontSize="20"   Grid.Column="1" Name="tbLogin" PreviewTextInput= "tb1_PreviewTextInput" DataObject.Pasting="tb1_Pasting"/>
+        <PasswordBox Grid.Row="3" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" FontSize="20" VerticalContentAlignment="Center"  FontFamily="Ink Free"  Grid.Column="1"  Name="tbPassword" PreviewTextInput= "tb1_PreviewTextInput" DataObject.Pasting="tb1_Pasting"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Ink Free" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Логин " FontSize="20"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Ink Free" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Пароль " FontSize="20"/>
+
+        <Button Name="btnAuth" FontSize="20" Background="#445c93" Grid.Row="5" Grid.Column="1" Content="Войти" Click="btnAuth_Click" FontFamily="Ink Free"/>
+        <Button Name="btnReg" FontSize="20" Grid.Row="5" Grid.Column="2" Content="---Регистрация---" Click="btnReg_Click" FontFamily="Ink Free" Background="Transparent" Foreground="Blue"/>
+        <Button Name="btnRecovery" Margin="70 0 70 0" FontSize="20" Background="#445c93" Grid.Row="7" Grid.ColumnSpan="2"  Grid.Column="1" Content="Восстановить пароль" Click="btnRecovery_Click" FontFamily="Ink Free"/>
+
+    </Grid>
+</Page>

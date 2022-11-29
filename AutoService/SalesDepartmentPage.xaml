@@ -1,0 +1,128 @@
+﻿<Page x:Class="AutoService.SalesDepartmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoService"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SalesDepartmentPage">
+
+    <Grid Name="grdSalesDepartament">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Заказы ожидающие оформления" FontSize="25" HorizontalAlignment="Center"/>
+        <Label Content="Оформленные" FontSize="25" Grid.Column="1" HorizontalAlignment="Center"/>
+
+        <DataGrid Name="dgOrders" ItemsSource="{Binding orderclient}" AutoGenerateColumns="False" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер заказа" Width="*" Binding="{Binding ordernumber, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTemplateColumn Header="Дата" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=orderdate}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Машина" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=carnumber}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Стоимость" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=ordersum}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Оформить"  Click="btnAddOrder_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Отменить"  Click="btnDelOrder_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <DataGrid Grid.Row="1" Grid.Column="1" Name="dgContracts"  AutoGenerateColumns="False" ItemsSource="{Binding contract}" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер контракта" Width="*" Binding="{Binding contractnumber, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Дата заклюения" Width="*" Binding="{Binding datecomclusion, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Клиент" Width="*" Binding="{Binding clientnumber, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Оформил" Width="*" Binding="{Binding email, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Отменить"  Click="btnDelContract_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Grid.Row="2" Grid.ColumnSpan="2" Content="Предлогаемые услуги" FontSize="25" HorizontalAlignment="Center" />
+        <DataGrid RowEditEnding="dgServices_RowEditEnding"  Grid.ColumnSpan="2" Grid.Row="3" AutoGenerateColumns="False" ItemsSource="{Binding warehouse}" x:Name="dgServices"  BorderBrush="Black" Margin="1,0,0,0" >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название услуги" MinWidth="25" Width="*" Binding="{Binding servicename, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="30"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Цена" MinWidth="60" Width="*" Binding="{Binding price, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="30"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Описание" MinWidth="60" Width="*" Binding="{Binding servicedescription, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="500"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить"  Click="btnDelService_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Page>

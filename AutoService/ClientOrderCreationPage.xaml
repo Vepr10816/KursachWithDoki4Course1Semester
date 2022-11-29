@@ -1,0 +1,71 @@
+﻿<Page x:Class="AutoService.ClientOrderCreationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoService"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClientOrderCreationPage">
+
+    <Grid Name="grdOrderCreate">
+        <StackPanel Width="800" VerticalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <WrapPanel >
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                        <Label Content="Выберите услуги" HorizontalContentAlignment="Center" Width="400"/>
+                        <DataGrid Name="dgService" Width="400" HorizontalScrollBarVisibility="Hidden" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False"  VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="Transparent" AlternatingRowBackground="AliceBlue" BorderBrush="Transparent" HeadersVisibility="Column" AutoGenerateColumns="False" ItemsSource="{Binding service}" CanUserAddRows="False" CanUserDeleteRows="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="False" SelectionChanged="dgService_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Услуги" Width="180">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=servicename}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                
+                                <DataGridTemplateColumn Header="Стоимость" Width="180">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=price}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Width="40">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox Name="chDG" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="chDG_Checked" Unchecked="chDG_Unchecked"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock Name="tblDescription"/>
+                    </StackPanel>
+                    <Rectangle Width="20"/>
+                    <StackPanel>
+                        <Label Content="Укажите дату" HorizontalAlignment="Center"/>
+                        <DatePicker Width="150" DisplayDateStart="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}" Name="dpOrder"/>
+                    </StackPanel>
+                    <Rectangle Width="20"/>
+                    <StackPanel>
+                        <Label Content="Укажите автомобиль" HorizontalAlignment="Center"/>
+                        <ComboBox Width="150" Name="cbCars"  />
+                    </StackPanel>
+                </WrapPanel>
+                <RichTextBox Name="lbDescription" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Width="800" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0, 0, 10, 10">
+            
+            <WrapPanel  HorizontalAlignment="Right" >
+                <Label Content="Итого: " HorizontalAlignment="Right"/>
+                <Label Name="lbPriceEnding" Content="0" HorizontalAlignment="Right"/>
+                <Label  Content=" руб." HorizontalAlignment="Right"/>
+            </WrapPanel>
+            <Button Grid.Row="9" Grid.Column="4" Content="Оформить заказ" Name="btnAddOrder" Click="btnAddOrder_Click" Grid.ColumnSpan="2"  Width="800"/>
+        </StackPanel>
+    </Grid>
+</Page>

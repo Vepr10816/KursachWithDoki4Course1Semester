@@ -1,0 +1,108 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace AutoService
+{
+    /// <summary>
+    /// Логика взаимодействия для ClientPage.xaml
+    /// </summary>
+    public partial class ClientPage : Page
+    {
+
+        DBHelper dbhelper = new DBHelper();
+        ValidationData valid = new ValidationData();
+        string Client = "";
+
+
+        private void Data_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgCars.SelectedItem == null)
+            {
+                return;
+            }
+            DataRowView row = (DataRowView)dgCars.SelectedItem;
+            tbNumber.Text = row[0].ToString();
+            tbBrand.Text = row[1].ToString();
+            tbModel.Text = row[2].ToString();
+            tbSTS.Text = row[3].ToString();
+            tbVIN.Text = row[4].ToString();
+
+        }
+
+        public ClientPage(string clientNumber)
+        {
+            InitializeComponent();
+            dbhelper.Refresh(dgCars, $@"select * from Car where clientnumber = '{clientNumber}'", grdClientCar);
+            Client = clientNumber;
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            dbhelper.Refresh(dgCars, $@"select * from Car where clientnumber = '{Client}'", grdClientCar);
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbNumber.Text.Length == 6 && tbSTS.Text.Length == 10 && tbVIN.Text.Length == 17 && tbBrand.Text != "" && tbModel.Text != "")
+            {
+                string[] atributes = { tbNumber.Text, tbBrand.Text, tbModel.Text, tbSTS.Text, tbVIN.Text, Client};
+                dbhelper.InsertInto("Car", atributes);
+                dbhelper.Refresh(dgCars, $@"select * from Car where clientnumber = '{Client}'", grdClientCar);
+            }
+            else
+            {
+                valid.Show("Все поля должны быть заполнены: длина номера - 6, длина стс - 10, длина VIN - 17").GetAwaiter();
+            }
+        }
+
+        private void btnUpd_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgCars.SelectedIndex == -1)
+                return;
+            if (tbNumber.Text.Length == 6 && tbSTS.Text.Length == 10 && tbVIN.Text.Length == 17 && tbBrand.Text != "" && tbModel.Text != "")
+            {
+                string[] atributes = { dbhelper.GetValueData(dgCars, "carnumber"), tbBrand.Text, tbModel.Text, tbSTS.Text, tbVIN.Text, Client, tbNumber.Text };
+                dbhelper.UpdateInto("Car", atributes);
+                dbhelper.Refresh(dgCars, $@"select * from Car where clientnumber = '{Client}'", grdClientCar);
+            }
+            else
+            {
+                valid.Show("Все поля должны быть заполнены: длина номера - 6, длина стс - 10, длина VIN - 17").GetAwaiter();
+            }
+        }
+
+        private void btnDel_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgCars.SelectedIndex == -1)
+                return;
+            if (MessageBox.Show("Вы точно хотите удалить данную машину?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                dbhelper.DeleteInto("Car", $@"{dbhelper.GetValueData(dgCars, "carnumber")}");
+                dbhelper.Refresh(dgCars, $@"select * from Car where clientnumber = '{Client}'", grdClientCar);
+            }
+        }
+
+        private void btnGoOrder_Click(object sender, RoutedEventArgs e)
+        {
+            FrameManager.MainFrame.Navigate(new ClientOrderPage(Client));
+        }
+
+        private void btnGetOrder_Click(object sender, RoutedEventArgs e)
+        {
+            FrameManager.MainFrame.Navigate(new ClientOrderCreationPage(Client));
+        }
+    }
+}

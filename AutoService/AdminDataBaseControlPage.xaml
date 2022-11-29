@@ -1,0 +1,33 @@
+﻿<Page x:Class="AutoService.AdminDataBaseControlPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoService"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminDataBaseControlPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="80*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="70*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="1" Grid.Row="1" Content="Создать резервную копию" Name="btnRezCopy" Click="btnRezCopy_Click"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="Выполнить Backup данных" Name="btnBackup" Click="btnBackup_Click"/>
+        <Button Grid.Column="1" Grid.Row="6" Content="Выполнить откат данных по выбранной дате" Name="btnRollback" Click="btnRollback_Click"/>
+        <ComboBox Grid.Column="1" Grid.Row="5" Margin="10,10,10,10" Name="cbDateRollback"/>
+    </Grid>
+</Page>

@@ -1,0 +1,263 @@
+﻿<Page x:Class="AutoService.PurchasePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:AutoService"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PurchasePage">
+
+    <Grid Name="grdPurchase">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="111*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="111*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding purchaseOrder}" x:Name="dgPurchaseOrder" RowEditEnding="dgPurchaseOrder_RowEditEnding" BorderBrush="Black" Margin="0,0,1,0">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер заказа на поставку" MinWidth="25" Width="*" Binding="{Binding purchaseordernumber, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="35"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn Width="auto" Header="Дата">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding purchaseorderdate, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTextColumn Header="Количество" MinWidth="60" Width="*" Binding="{Binding quantity, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="7"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Итоговая цена" MinWidth="100" Width="*" Binding="{Binding rotalprice, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="9"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Артикул товара" MinWidth="140" Width="*" Binding="{Binding article, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="35"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить"  Click="btnDelPurchase_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <DataGrid Grid.Column="1" Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding suplier}" x:Name="dgSuplier" RowEditEnding="dgSuplier_RowEditEnding" BorderBrush="Black" Margin="1,0,0,0">
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="ИНН поставщика">
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=inn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput= "tb1_PreviewTextInputNum" DataObject.Pasting="tb1_PastingNum" MaxLength="10"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=inn, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <!--<DataGridTextColumn Header="ИНН поставщика" MinWidth="25" Width="*" Binding="{Binding inn, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="10"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>-->
+
+
+                <DataGridTextColumn Header="Наименование" MinWidth="60"  Binding="{Binding supliername, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="30"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+
+                </DataGridTextColumn>
+                <!--<DataGridTextColumn Header="Расчетный счет" MinWidth="100" Width="*" Binding="{Binding paymentaccount, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="20"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>-->
+
+                <DataGridTemplateColumn Header="Расчетный счет">
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=paymentaccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput= "tb1_PreviewTextInputNum" DataObject.Pasting="tb1_PastingNum" MaxLength="20"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=paymentaccount, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить"  Click="btnDelSuplier_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+        <DataGrid Grid.Column="0" Grid.Row="3" AutoGenerateColumns="False" ItemsSource="{Binding purchasecontract}" x:Name="dgPurchaseContract" RowEditEnding="dgPurchaseContract_RowEditEnding" BorderBrush="Black"  Margin="0,0,1,0">
+
+            <DataGrid.Columns>
+
+
+                <DataGridTemplateColumn Width="auto" Header="Дата">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding purchasecontractdate, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridComboBoxColumn x:Name="cbPurchaseOrder" Header="Номер заказа на поставку" MinWidth="60" />
+                <DataGridComboBoxColumn x:Name="cbSuplier" Header="Поставщик" MinWidth="60" />
+                <DataGridComboBoxColumn x:Name="cbEmployee" Header="Сотрудник" MinWidth="60"/>
+
+                <DataGridTextColumn Header="Номер контракта на поставку" MinWidth="25"  Binding="{Binding purchasecontractnumber, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="35"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить"  Click="btnDelPurchaseContract_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+
+
+
+        <DataGrid Grid.Column="1" Grid.Row="3" AutoGenerateColumns="False" ItemsSource="{Binding disposable}" x:Name="dgDisposable" RowEditEnding="dgDisposable_RowEditEnding" BorderBrush="Black" Margin="1,0,0,0" >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Серийный номер расходника" MinWidth="25" Width="*" Binding="{Binding seriesnumber, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="35"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+
+                <DataGridComboBoxColumn x:Name="cbPurchaseContractNumber" Header="Номер контракта на поставку" MinWidth="60" />
+
+
+
+
+                <DataGridTextColumn Header="Название расходника" MinWidth="60" Width="*" Binding="{Binding disposablename, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="7"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+
+                <DataGridTextColumn Header="Вес" MinWidth="100" Width="*" Binding="{Binding disposableweight, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="9"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+
+                <DataGridTextColumn Header="Цвет" MinWidth="140" Width="*" Binding="{Binding disposablecolor, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="20"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+
+                <DataGridTextColumn Header="Метериал" MinWidth="140" Width="*" Binding="{Binding disposablematerial, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="35"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Номер сертификата" MinWidth="140" Width="*" Binding="{Binding disposablesertificate, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="35"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить"  Click="btnDelDisposable_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="25" Content="Заказы на поставку" />
+        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="25" Content="Поставщики" />
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="25" Content="Контракты на поставку" />
+        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="25" Content="Расходники" />
+
+    </Grid>
+</Page>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoService", "AutoService\AutoService.csproj", "{C66A06F4-39FF-4EC0-A2B5-307F5FD2BE75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoServiceTests", "AutoServiceTests\AutoServiceTests.csproj", "{40DB227E-28BD-4C42-8A1F-16A6A9872EEF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C66A06F4-39FF-4EC0-A2B5-307F5FD2BE75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C66A06F4-39FF-4EC0-A2B5-307F5FD2BE75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C66A06F4-39FF-4EC0-A2B5-307F5FD2BE75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C66A06F4-39FF-4EC0-A2B5-307F5FD2BE75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40DB227E-28BD-4C42-8A1F-16A6A9872EEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40DB227E-28BD-4C42-8A1F-16A6A9872EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40DB227E-28BD-4C42-8A1F-16A6A9872EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40DB227E-28BD-4C42-8A1F-16A6A9872EEF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6600D5F8-B916-47A1-85B2-58F0BF9FBC05}
+	EndGlobalSection
+EndGlobal

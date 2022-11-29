@@ -1,0 +1,73 @@
+﻿<Page x:Class="AutoService.ClientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoService"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClientPage">
+
+    <Grid Name="grdClientCar">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="216*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="24*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="22*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="101*"/>
+            <ColumnDefinition Width="62*"/>
+            <ColumnDefinition Width="106*"/>
+            <ColumnDefinition Width="70*"/>
+            <ColumnDefinition Width="56*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="61*"/>
+            <ColumnDefinition Width="108*"/>
+            <ColumnDefinition Width="66*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Row="1" Name="dgCars" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Grid.ColumnSpan="11" Margin="0,2,0,1"  SelectionChanged="Data_SelectionChanged" ItemsSource="{Binding car}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер" MinWidth="25" Width="*" Binding="{Binding carnumber, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Марка" MinWidth="25" Width="*" Binding="{Binding carbrand, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Модель" MinWidth="25" Width="*" Binding="{Binding carmodel, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="СТС" MinWidth="25" Width="*" Binding="{Binding sts, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="VIN" MinWidth="25" Width="*" Binding="{Binding vin, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+        <Label Content="Номер машины" Grid.Row="2" HorizontalAlignment="Center" Margin="2,23,1.6,0.4" Grid.RowSpan="2" Width="98"/>
+        <Label Content="Марка машины:" Grid.Row="5" HorizontalAlignment="Center" Margin="1,0.4,1.6,0" Width="99" />
+        <Label Content="Модель:" Grid.Row="6" HorizontalAlignment="Center" Margin="23,22,22.6,0.4" Grid.RowSpan="2" Width="56" />
+        <TextBox Grid.Row="2" Grid.Column="1" Name="tbNumber" Grid.ColumnSpan="2" MaxLength="6" Margin="0.4,23,0.4,0.4" Grid.RowSpan="2"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Name="tbBrand" Grid.ColumnSpan="2" MaxLength="30" Margin="0.4,0.4,0.4,0"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Name="tbModel" Grid.ColumnSpan="2" MaxLength="50" Margin="0.4,22,0.4,0.4" Grid.RowSpan="2"/>
+
+        <Label Content="VIN:" Grid.Row="2" Grid.Column="5" HorizontalAlignment="Left" Margin="0.2,23,0,0.4" Grid.RowSpan="2" Width="32" />
+        <Label Content="STS:" Grid.Row="5" Grid.Column="5" HorizontalAlignment="Left" Margin="0.2,0.4,0,0" Width="32"/>
+        <TextBox Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5" Name="tbVIN" Margin="50.2,23,108.6,0.4" Grid.RowSpan="2" MaxLength="17"/>
+        <TextBox Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="5" Name="tbSTS" Margin="50.2,0.4,108.6,0" MaxLength="10"/>
+
+        <Button Grid.Row="9" Grid.Column="2" Content="Добавить" Name="btnAdd" Click="btnAdd_Click" Margin="2,2.8,2.4,2.6"/>
+        <Button Grid.Row="9" Grid.Column="4" Content="Изменить" Name="btnUpd" Grid.ColumnSpan="2" Click="btnUpd_Click" Margin="2.2,2.8,2.2,2.6"/>
+        <Button Grid.Row="9" Grid.Column="7" Content="Удалить" Name="btnDel" Grid.ColumnSpan="2" Click="btnDel_Click" Margin="2.2,2.8,2.8,2.6"/>
+
+        <Button Name="btnClear" Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="2"  Content="Очистить" Click="btnClear_Click"/>
+
+        <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="11" HorizontalAlignment="Center">
+            <Button Content="Мои заказы" Name="btnGoOrder" Click="btnGoOrder_Click" Width="150" />
+            <Button Content="Оформить заказ" Name="btnGetOrder" Click="btnGetOrder_Click" Width="150"/>
+        </WrapPanel>
+    </Grid>
+</Page>
