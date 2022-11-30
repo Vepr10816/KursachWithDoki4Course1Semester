@@ -51,6 +51,10 @@ namespace AutoService
                 {
                     FrameManager.MainFrame.Navigate(new SalesDepartmentPage(tbLogin.Text));
                 }
+                if (role == "Сотрудник ремонтного отдела")
+                {
+                    FrameManager.MainFrame.Navigate(new RepairPage(tbLogin.Text));
+                }
                 if (role == "Клиент")
                 {
                     FrameManager.MainFrame.Navigate(new ClientPage(dbhelper.EecuteQueryReaderOne($@"select ClientNumber from client where email = '{tbLogin.Text}'", "ClientNumber")));

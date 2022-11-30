@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AutoService.exe" size="147968">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AutoService.exe" size="155136">
       <assemblyIdentity name="AutoService" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7xbA6ezT4ID9tsgeY5XYQEw+npjZ4JCqR+v1T1IZBMY=</dsig:DigestValue>
+        <dsig:DigestValue>bwbJttcPTseoAnwN3ndoVgC9ZTfrIf8iGhN7quqAYso=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

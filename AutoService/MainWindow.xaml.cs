@@ -25,7 +25,7 @@ namespace AutoService
         {
             InitializeComponent();
             FrameManager.MainFrame = MainFrame;
-            MainFrame.Navigate(new RepairPage());//ClientPage("4567865467"));//SalesDepartmentPage("diagram14@mail.ru"));//ClientPage("4567865467"));//new PurchasePage());//SignInPage());//new SignInPage());new DiagramAdmin() SalesDepartmentPage("diagram14@mail.ru"));
+            MainFrame.Navigate(new SignInPage());//ClientPage("4567865467"));//SalesDepartmentPage("diagram14@mail.ru"));//ClientPage("4567865467"));//new PurchasePage());//SignInPage());//new SignInPage());new DiagramAdmin() SalesDepartmentPage("diagram14@mail.ru"));
         }
 
         private void GoBack_Click(object sender, RoutedEventArgs e)

@@ -53,7 +53,7 @@
         </StackPanel>
         <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Статсус:" FontSize="25"/>
-            <Label Name="labelStatus" FontSize="25"/>
+            <ListBox Name="labelStatus" />
         </StackPanel>
 
         <Button Grid.Row="2" Content="Отменить заказ" VerticalAlignment="Bottom" Name="btnCancelOrder" Click="btnCancelOrder_Click"/>

@@ -17,7 +17,7 @@ namespace AutoService
 {
     public class DBHelper
     {
-        public static string conn_param = "Server=192.168.0.12; Port=5432;User Id=postgres;Password=1;Database=AutoService; Timeout=300; CommandTimeout=300"; //25.41.59.168 192.168.169.204 192.168.0.16
+        public static string conn_param = "Server=192.168.231.204; Port=5432;User Id=postgres;Password=1;Database=AutoService; Timeout=300; CommandTimeout=300"; //25.41.59.168 192.168.169.204 192.168.0.16
         public NpgsqlConnection connection = new NpgsqlConnection(conn_param);
         NpgsqlDataReader dataReader = null;
         NpgsqlCommand command = null;
@@ -60,6 +60,7 @@ namespace AutoService
         {
             try
             {
+                connection.Close();
                 connection.Open();
                 command = new NpgsqlCommand(query, connection);
                 DataTable datatbl = new DataTable();
@@ -187,6 +188,7 @@ namespace AutoService
             string data = "";
             try
             {
+                connection.Close();
                 connection.Open();
                 command = new NpgsqlCommand(query, connection);
                 dataReader = command.ExecuteReader();
@@ -209,7 +211,7 @@ namespace AutoService
         }
 
         string strPG_dumpPath = "SET PGPASSWORD=1\r\n\r\ncd /D C:\\Program Files\r\n\r\ncd PostgreSQL\r\n\r\ncd 13\r\n\r\ncd bin\r\n\r\n";
-        string strServer = "192.168.0.12";
+        string strServer = "192.168.231.204";
         string strPort = "5432";
         string strDatabaseName = "AutoService";
         public void Backup(string pathSave)

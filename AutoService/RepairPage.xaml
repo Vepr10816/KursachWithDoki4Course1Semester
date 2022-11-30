@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:AutoService"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -15,6 +16,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -25,9 +27,66 @@
                 <DataGridTextColumn Header="Клиент" Width="*" Binding="{Binding clientnumber, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Номер заказа" Width="*" Binding="{Binding ordernumber, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Номер машины" Width="*" Binding="{Binding carnumber, UpdateSourceTrigger=PropertyChanged}"/>
-                
             </DataGrid.Columns>
         </DataGrid>
+
+        <Label Grid.Row="1"  Content="Диагностика" FontSize="25" HorizontalAlignment="Center" />
+        <DataGrid RowEditEnding="dgDiagnostics_RowEditEnding"   Grid.Row="2" AutoGenerateColumns="False" ItemsSource="{Binding diagnostics}" x:Name="dgDiagnostics"  BorderBrush="Black" Margin="1,0,0,0" SelectionChanged="dgDiagnostics_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Уникальный номер диагностики" MinWidth="60" Width="*" Binding="{Binding diagnosticsnumber, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="30"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+                
+                <DataGridTemplateColumn Width="auto" Header="Дата">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                            <DatePicker SelectedDate="{Binding diagnosticsdate, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="{Binding Mode=OneWay, Source={x:Static System:DateTime.Today}}"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+            <DataGridTextColumn Header="Результат диагностики" MinWidth="60" Width="*" Binding="{Binding diagnosticsresults, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="30"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+            
+                <DataGridTextColumn Header="Описание" MinWidth="60" Width="*" Binding="{Binding diagnosticsdescription, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.EditingElementStyle>
+                        <Style TargetType="TextBox">
+                            <Setter Property="MaxLength" Value="500"/>
+                        </Style>
+                    </DataGridTextColumn.EditingElementStyle>
+                </DataGridTextColumn>
+
+
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Grid.Row="1" Grid.Column="1"  Content="Статус машины" FontSize="25" HorizontalAlignment="Center" />
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Label FontSize="15" Content="Статус манины" HorizontalContentAlignment="Center"/>
+            <TextBox Name="tbStatusName" TextAlignment="Center"/>
+            <Label FontSize="15" Content="Время" HorizontalContentAlignment="Center"/>
+            <Label FontSize="20" Content="00:00" HorizontalContentAlignment="Center" Name="lbTimeStatus"/>
+            <Button Name="btnAddStatus" Content="Обозначить статус" Click="btnAddStatus_Click"/>
+            <Button Name="btnDelOrder" Content="Закрыть ремонт" Click="btnDelOrder_Click"/>
+            
+        </StackPanel>
+        
 
     </Grid>
 </Page>

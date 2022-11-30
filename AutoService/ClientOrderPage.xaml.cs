@@ -23,6 +23,8 @@ namespace AutoService
         DBHelper dbhelper = new DBHelper();
         List<string> carNumbersClient = new List<string>();
         string Query = "";
+        List<string> statuses = new List<string>();
+        List<string> diagnostics = new List<string>();
         public ClientOrderPage(String clientNumber)
         {
             InitializeComponent();
@@ -39,19 +41,39 @@ namespace AutoService
 
         private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            diagnostics.Clear();
+            statuses.Clear();
             lbServices.Items.Clear();
             carNumbersClient.Clear();
+            labelStatus.Items.Clear();
             dbhelper.EecuteQueryReader($@"select * from serviceorder where ordernumber = '{dbhelper.GetValueData(dgHistory, "ordernumber")}'",carNumbersClient, "servicename");
             foreach(string service in carNumbersClient)
             {
                 lbServices.Items.Add(service);
             }
 
-            if (dbhelper.EecuteQueryReaderOne("select count(ordernumber) from contract", "count") == "0")
-                labelStatus.Content = "В обработке";
+            if (dbhelper.EecuteQueryReaderOne($@"select count(ordernumber) from contract where ordernumber = '{dbhelper.GetValueData(dgHistory, "ordernumber")}'", "count") == "0")
+                labelStatus.Items.Clear();
             else
             {
-                labelStatus.Content = "Заказ оформлен чек выслан на поту";
+                string contractnumber = dbhelper.EecuteQueryReaderOne($@"select contractnumber from contract where ordernumber = '{dbhelper.GetValueData(dgHistory, "ordernumber")}'", "contractnumber");
+                if (dbhelper.EecuteQueryReaderOne($@"select count(diagnosticsnumber) from diagnostics where contractnumber = '{contractnumber}'", "count") == "0")
+                    labelStatus.Items.Add("Заказ оформлен чек выслан на поту");
+                else
+                {
+                    labelStatus.Items.Clear();
+                    diagnostics = dbhelper.EecuteQueryReader($@"select diagnosticsnumber from diagnostics where contractnumber = '{contractnumber}'", diagnostics, "diagnosticsnumber");
+                    foreach (string diag in diagnostics)
+                    {
+                        statuses.Add(dbhelper.EecuteQueryReaderOne($@"select (statustime || ': ' || statuscar) as aaa from statuscar where diagnosticsnumber = '{diag}'", "aaa"));
+                    }
+
+                    //statuses = dbhelper.EecuteQueryReader($@"select (statustime || ': ' || statuscar) as aaa from statuscar where diagnosticsnumber = '{dbhelper.EecuteQueryReaderOne($@"select diagnosticsnumber from diagnostics where contractnumber = '{contractnumber}'", "diagnosticsnumber")}'", statuses,"aaa");
+                    foreach (string st in statuses)
+                    {
+                        labelStatus.Items.Add(st);
+                    }
+                }
             }
         }
 
