@@ -246,6 +246,16 @@ namespace AutoService
         public void Restore(string pathFile)
         {
             strDatabaseName = "ProbaRestore";
+            connection.Open();
+            try
+            {
+                command = new NpgsqlCommand("DROP DATABASE \"ProbaRestore\";", connection);
+                command.ExecuteNonQuery();
+            }
+            catch { }
+            command = new NpgsqlCommand("Create DATABASE \"ProbaRestore\";", connection);
+            command.ExecuteNonQuery();
+            connection.Close();
             try
             {
                 if (strDatabaseName != "")

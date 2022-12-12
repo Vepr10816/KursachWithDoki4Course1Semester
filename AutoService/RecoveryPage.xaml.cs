@@ -24,6 +24,7 @@ namespace AutoService
         EmailHelper emailHelper = new EmailHelper();
         ValidationData valid = new ValidationData();
         Random r = new Random();
+        int code;
         public RecoveryPage()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace AutoService
 
         private void btnSendMessage_Click(object sender, RoutedEventArgs e)
         {
-            int code = r.Next(100000, 999999);
+            code = r.Next(100000, 999999);
             if (dbhelper.EecuteQueryReaderOne($@"select count(Email) FROM Users where Email = '{tbEmail.Text}'", "count") == "1")
             {
                 emailHelper.SendMail(tbEmail.Text, code).GetAwaiter();
@@ -44,7 +45,7 @@ namespace AutoService
 
         private void btnCheckCode_Click(object sender, RoutedEventArgs e)
         {
-            if (tbCode.Text == r.ToString())
+            if (tbCode.Text == code.ToString())
             {
                 tbCode.IsEnabled = false;
                 btnCheckCode.IsEnabled = false;
@@ -62,7 +63,7 @@ namespace AutoService
             }
             if(pbPassword.Password == pbPassword2.Password)
             {
-                dbhelper.EecuteQuery($@"UPDATE Users SET Password = '{valid.Encrypt(pbPassword.Password)}' WHERE Email = {tbEmail.Text};");
+                dbhelper.EecuteQuery($@"UPDATE Users SET Password = '{valid.Encrypt(pbPassword.Password)}' WHERE Email = '{tbEmail.Text}';");
                 valid.Show("Успешное восстановление пароля").GetAwaiter();
                 FrameManager.MainFrame.GoBack();
             }

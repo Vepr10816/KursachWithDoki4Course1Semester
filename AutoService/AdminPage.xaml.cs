@@ -73,8 +73,8 @@ namespace AutoService
                 if (op.ShowDialog() == true)
                 {
                     dbhelper.EecuteQuery($@"COPY Users FROM '{op.FileName}' DELIMITER ';' CSV HEADER;");
+                    valid.Show("Данные импортированы").GetAwaiter();
                 }
-                valid.Show("Данные импортированы").GetAwaiter();
                 dbhelper.Refresh(dgUsers, "select * from Users_View; ", grdAdmin);
             }
             catch (NotSupportedException)
@@ -94,15 +94,15 @@ namespace AutoService
                 dialog.Title = "Save as dqy file";
                 if (dialog.ShowDialog() == true)
                 {
-                    var buffer = Encoding.UTF8.GetBytes("XLODBC\n1\nDRIVER={PostgreSQL Unicode(x64)};DATABASE=AutoService;SERVER=192.168.225.204;PORT=5432;UID=postgres;PASSWORD=1;SSLmode=disable;ReadOnly=0;Protocol=7.4;FakeOidIndex=0;ShowOidColumn=0;RowVersioning=0;ShowSystemTables=0;ConnSettings=;Fetch=100;Socket=4096;UnknownSizes=0;MaxVarcharSize=255;MaxLongVarcharSize=8190;Debug=0;CommLog=0;Optimizer=0;Ksqo=1;UseDeclareFetch=0;TextAsLongVarchar=1;UnknownsAsLongVarchar=0;BoolsAsChar=1;Parse=0;CancelAsFreeStmt=0;ExtraSysTablePrefixes=dd_;LFConversion=1;UpdatableCursors=1;DisallowPremature=0;TrueIsMinus1=0;BI=0;ByteaAsLongVarBinary=0;UseServerSidePrepare=0;LowerCaseIdentifier=0;GssAuthUseGSS=0;XaOpt=1\nselect * from Users");
+                    var buffer = Encoding.UTF8.GetBytes("XLODBC\n1\nDRIVER={PostgreSQL Unicode(x64)};DATABASE=AutoService;SERVER=192.168.231.204;PORT=5432;UID=postgres;PASSWORD=1;SSLmode=disable;ReadOnly=0;Protocol=7.4;FakeOidIndex=0;ShowOidColumn=0;RowVersioning=0;ShowSystemTables=0;ConnSettings=;Fetch=100;Socket=4096;UnknownSizes=0;MaxVarcharSize=255;MaxLongVarcharSize=8190;Debug=0;CommLog=0;Optimizer=0;Ksqo=1;UseDeclareFetch=0;TextAsLongVarchar=1;UnknownsAsLongVarchar=0;BoolsAsChar=1;Parse=0;CancelAsFreeStmt=0;ExtraSysTablePrefixes=dd_;LFConversion=1;UpdatableCursors=1;DisallowPremature=0;TrueIsMinus1=0;BI=0;ByteaAsLongVarBinary=0;UseServerSidePrepare=0;LowerCaseIdentifier=0;GssAuthUseGSS=0;XaOpt=1\nselect * from Users");
 
                     using (var fs = new FileStream(dialog.FileName+".dqy", FileMode.OpenOrCreate,
                         FileAccess.Write, FileShare.None, buffer.Length, true))
                     {
                         fs.Write(buffer, 0, buffer.Length);
                     }
+                    valid.Show("Данные экспортированы").GetAwaiter();
                 }
-                valid.Show("Данные экспортированы").GetAwaiter();
                 dbhelper.Refresh(dgUsers, "select * from Users_View; ", grdAdmin);
             }
             catch (NotSupportedException)
@@ -155,7 +155,7 @@ namespace AutoService
         {
             if (valid.IsValidEmail(tbEmail.Text) != false && valid.IsValidPassword(tbPassword.Text) != false && tbLastName.Text != "" && tbFirstName.Text != "" && tbMiddleName.Text != "" && cbPost.Text !="")
             {
-                string[] atributes = { tbEmail.Text, tbPassword.Text, tbLastName.Text, tbFirstName.Text, tbMiddleName.Text, cbPost.Text };
+                string[] atributes = { tbEmail.Text, valid.Encrypt(tbPassword.Text), tbLastName.Text, tbFirstName.Text, tbMiddleName.Text, cbPost.Text };
                 dbhelper.InsertInto("Users", atributes);
                 if (cbPost.SelectedIndex == 2)
                 {
@@ -183,11 +183,14 @@ namespace AutoService
 
         private void btnUpd_Click(object sender, RoutedEventArgs e)
         {
+            string password = tbPassword.Text;
+            if (dbhelper.EecuteQueryReaderOne($@"select count(password) as aaa from users where password = '{tbPassword.Text}'", "aaa") == "0")
+                password = valid.Encrypt(password);
             if (dgUsers.SelectedIndex == -1)
                 return;
             if (valid.IsValidEmail(tbEmail.Text) != false && valid.IsValidPassword(tbPassword.Text) != false && tbLastName.Text != "" && tbFirstName.Text != "" && tbMiddleName.Text != "" && cbPost.Text != "")
             {
-                string[] atributes = { dbhelper.GetValueData(dgUsers, "Email"), tbPassword.Text, tbLastName.Text, tbFirstName.Text, tbMiddleName.Text, cbPost.Text, tbEmail.Text};
+                string[] atributes = { dbhelper.GetValueData(dgUsers, "Email"), password, tbLastName.Text, tbFirstName.Text, tbMiddleName.Text, cbPost.Text, tbEmail.Text};
                 dbhelper.UpdateInto("Users", atributes);
             }
             dbhelper.Refresh(dgUsers, "select * from Users_View; ", grdAdmin);

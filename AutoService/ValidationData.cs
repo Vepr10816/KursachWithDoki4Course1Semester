@@ -172,10 +172,10 @@ namespace AutoService
             int contain = 0;
             if (s.Length >= 7)
                 contain += 1;
-            string zag = "ABCDEFGHIJKLMNOPRSTUVWXYZ";
+            string zag = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             if (s.IndexOfAny(zag.ToCharArray()) > -1)
                 contain += 1;
-            string small = "abcdefghijklmnoprstuvwxyz";
+            string small = "abcdefghijklmnopqrstuvwxyz";
             if (s.IndexOfAny(small.ToCharArray()) > -1)
                 contain += 1;
             string numb = "123456789";

@@ -68,7 +68,7 @@ namespace AutoServiceTests
 
 
         [TestMethod]
-        public void UsersDeleteInto_Email_1_returned()
+        public void UsersZeleteInto_Email_1_returned()
         {
             //arange
             email = "newuser@mail.ru";

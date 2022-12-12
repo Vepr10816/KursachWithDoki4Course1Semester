@@ -66,6 +66,7 @@
             <ComboBoxItem>Клиент</ComboBoxItem>
             <ComboBoxItem>Сотрудник склада</ComboBoxItem>
             <ComboBoxItem>Сотрудник отдела продаж</ComboBoxItem>
+            <ComboBoxItem>Сотрудник ремонтного отдела</ComboBoxItem>
         </ComboBox>
 
         <Label Content="Фамилия:" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" />

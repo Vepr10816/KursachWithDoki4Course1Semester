@@ -32,7 +32,7 @@ namespace AutoService
 
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {
-            string role = dbhelper.Authorization(tbLogin.Text, tbPassword.Password);
+            string role = dbhelper.Authorization(tbLogin.Text, valid.Encrypt(tbPassword.Password));
             if (role !=null)
             {
                 if(role == "Администратор")
@@ -60,15 +60,15 @@ namespace AutoService
                     FrameManager.MainFrame.Navigate(new ClientPage(dbhelper.EecuteQueryReaderOne($@"select ClientNumber from client where email = '{tbLogin.Text}'", "ClientNumber")));
                 }
             }
-            else
-            {
-                ValidationData valid = new ValidationData();
-                role = dbhelper.Authorization(tbLogin.Text, valid.Encrypt(tbPassword.Password));
-                if(role == "Клиент")
-                {
-                    FrameManager.MainFrame.Navigate(new ClientPage(dbhelper.EecuteQueryReaderOne($@"select ClientNumber from client where email = '{tbLogin.Text}'", "ClientNumber")));
-                }
-            }
+            //else
+            //{
+            //    ValidationData valid = new ValidationData();
+            //    role = dbhelper.Authorization(tbLogin.Text, valid.Encrypt(tbPassword.Password));
+            //    if(role == "Клиент")
+            //    {
+            //        FrameManager.MainFrame.Navigate(new ClientPage(dbhelper.EecuteQueryReaderOne($@"select ClientNumber from client where email = '{tbLogin.Text}'", "ClientNumber")));
+            //    }
+            //}
         }
 
         private void btnReg_Click(object sender, RoutedEventArgs e)

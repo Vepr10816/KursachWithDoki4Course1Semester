@@ -21,7 +21,7 @@ namespace AutoService
     /// </summary>
     public partial class PurchasePage : Page
     {
-        DBHelper dbhelper = new DBHelper(); 
+        DBHelper dbhelper = new DBHelper();
         public PurchasePage()
         {
             InitializeComponent();
@@ -58,7 +58,7 @@ namespace AutoService
             if (e.EditAction == DataGridEditAction.Commit)
             {
                 string[] atributes = { dbhelper.GetValueData(dgSuplier, "inn"), dbhelper.GetValueData(dgSuplier, "supliername"), dbhelper.GetValueData(dgSuplier, "paymentaccount"), dbhelper.GetValueData(dgSuplier, "inn") };
-                if (dbhelper.EecuteQueryReaderOne($@"select count(inn) from suplier where inn = '{dbhelper.GetValueData(dgPurchaseOrder, "inn")}'", "count") == "1")
+                if (dbhelper.EecuteQueryReaderOne($@"select count(inn) from suplier where inn = '{dbhelper.GetValueData(dgSuplier, "inn")}'", "count") == "1")
                 {
                     dbhelper.UpdateInto("Suplier", atributes);
                 }
