@@ -20,16 +20,39 @@ namespace AutoService
     /// </summary>
     public partial class SignInPage : Page
     {
+        //экземпляр класса управления БД
         DBHelper dbhelper = new DBHelper();
+
+        //экземпляр класса валидации
         ValidationData valid = new ValidationData();
+
+        /// <summary>
+        /// Инициализая компонентов страницы авторизации
+        /// </summary>
         public SignInPage()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработчик вводимых значений в текстовое поле
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void tb1_PreviewTextInput(object sender, TextCompositionEventArgs e) => new ValidationData().tb1_PreviewTextInputAngNum(sender, e);
+
+        /// <summary>
+        /// Обработчик вставки значений в текстовое поле
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void tb1_Pasting(object sender, DataObjectPastingEventArgs e) => new ValidationData().tb1_PastingAngNum(sender, e);
 
+        /// <summary>
+        /// Обработчик кнопки входа
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {
             string role = dbhelper.Authorization(tbLogin.Text, valid.Encrypt(tbPassword.Password));
@@ -60,22 +83,23 @@ namespace AutoService
                     FrameManager.MainFrame.Navigate(new ClientPage(dbhelper.EecuteQueryReaderOne($@"select ClientNumber from client where email = '{tbLogin.Text}'", "ClientNumber")));
                 }
             }
-            //else
-            //{
-            //    ValidationData valid = new ValidationData();
-            //    role = dbhelper.Authorization(tbLogin.Text, valid.Encrypt(tbPassword.Password));
-            //    if(role == "Клиент")
-            //    {
-            //        FrameManager.MainFrame.Navigate(new ClientPage(dbhelper.EecuteQueryReaderOne($@"select ClientNumber from client where email = '{tbLogin.Text}'", "ClientNumber")));
-            //    }
-            //}
         }
 
+        /// <summary>
+        /// Обработчик кнопки перехода на страницу регистрации
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnReg_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.MainFrame.Navigate(new SignUpPage());
         }
 
+        /// <summary>
+        /// Обработчик кнопки перехода на страницу восстановления пароля
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnRecovery_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.MainFrame.Navigate(new RecoveryPage());

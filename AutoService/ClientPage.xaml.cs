@@ -22,11 +22,20 @@ namespace AutoService
     public partial class ClientPage : Page
     {
 
+        //экземпляр класса управления БД
         DBHelper dbhelper = new DBHelper();
+
+        //экземпляр класса валидации
         ValidationData valid = new ValidationData();
+
+        //Уникалтьный индетификатор клиента
         string Client = "";
 
-
+        /// <summary>
+        /// Обработчик выбора значения в DataGrid автомобилей
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void Data_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgCars.SelectedItem == null)
@@ -41,7 +50,11 @@ namespace AutoService
             tbVIN.Text = row[4].ToString();
 
         }
-
+        
+        /// <summary>
+        /// Инциализация копонентов страницы клиента
+        /// </summary>
+        /// <param name="clientNumber">уникальный индетификатор клиента</param>
         public ClientPage(string clientNumber)
         {
             InitializeComponent();
@@ -49,11 +62,21 @@ namespace AutoService
             Client = clientNumber;
         }
 
+        /// <summary>
+        /// Обработчик кнопки очищения текстовых полей
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             dbhelper.Refresh(dgCars, $@"select * from Car where clientnumber = '{Client}'", grdClientCar);
         }
 
+        /// <summary>
+        /// Обработчик кнопки добавления машины
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (tbNumber.Text.Length == 6 && tbSTS.Text.Length == 10 && tbVIN.Text.Length == 17 && tbBrand.Text != "" && tbModel.Text != "")
@@ -68,6 +91,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчик обновления данных по машине
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnUpd_Click(object sender, RoutedEventArgs e)
         {
             if (dgCars.SelectedIndex == -1)
@@ -95,11 +123,21 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчик перехода на страницу оформления заказа
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnGoOrder_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.MainFrame.Navigate(new ClientOrderPage(Client));
         }
 
+        /// <summary>
+        /// Обработчик кнопки перехода на страницу истории заказов
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnGetOrder_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.MainFrame.Navigate(new ClientOrderCreationPage(Client));

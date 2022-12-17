@@ -20,7 +20,12 @@ namespace AutoService
     /// </summary>
     public partial class WarehousePage : Page
     {
+        //экземпляр класса управления БД
         DBHelper dbhelper = new DBHelper();
+
+        /// <summary>
+        /// Инциализация компонентов страницы Складского отдела
+        /// </summary>
         public WarehousePage()
         {
             InitializeComponent();
@@ -28,6 +33,11 @@ namespace AutoService
             DataGridsRefresh();
         }
 
+        /// <summary>
+        /// Обработчик обновления данных DataGrid скаладов
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void dgWarehouse_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
             string[] atributes = { dbhelper.GetValueData(dgWarehouse, "warehousename"), dbhelper.GetValueData(dgWarehouse, "warehouseaddress"),dbhelper.GetValueData(dgWarehouse, "warehousename") };
@@ -42,6 +52,11 @@ namespace AutoService
             DataGridsRefresh();
         }
 
+        /// <summary>
+        /// Обработчик кнопки удаления склада
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnDelDisposable_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Вы точно хотите удалить данный Склад?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -51,6 +66,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчик обновления данных DataGrid ячеек
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void dgCells_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
             string[] atributes = { dbhelper.GetValueData(dgCells, "cellnumber"), dbhelper.GetTextComboBox(dgCells, 0), dbhelper.GetValueData(dgCells, "cellnumber") };
@@ -65,6 +85,11 @@ namespace AutoService
             DataGridsRefresh();
         }
 
+        /// <summary>
+        /// Обработчик кнопки удаления ячейки склада
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnDelCell_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Вы точно хотите удалить данную ячейку?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -74,6 +99,9 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обновление всех DataGrid-ов страницы
+        /// </summary>
         private void DataGridsRefresh()
         {
             dbhelper.Refresh(dgWarehouse, "select * from warehouse; ", grdWarehousePage);
@@ -85,6 +113,11 @@ namespace AutoService
             dbhelper.BindComboBox(cbcellemail, "select lastname ||' '|| firstname||' '|| middlename as colum, email from Users where RoleName = 'Сотрудник склада'", "colum", "email");
         }
 
+        /// <summary>
+        /// Обработчик обновления данных DataGrid наклодной
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void dgInvoice_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
             string[] atributes = { dbhelper.GetValueData(dgInvoice, "invoicenmber"), 
@@ -105,6 +138,11 @@ namespace AutoService
             DataGridsRefresh();
         }
 
+        /// <summary>
+        /// Обработчик кнопки удаления накладной
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnDelInvoice_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Вы точно хотите удалить данную накладную?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)

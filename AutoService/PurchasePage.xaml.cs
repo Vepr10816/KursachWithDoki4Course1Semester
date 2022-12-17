@@ -21,13 +21,29 @@ namespace AutoService
     /// </summary>
     public partial class PurchasePage : Page
     {
+        //экземпляр класса управления БД
         DBHelper dbhelper = new DBHelper();
+
+        List<string> purchaseOrder = new List<string>();
+        List<string> inn = new List<string>();
+        List<string> purchasecontractNumber = new List<string>();
+        List<string> seriesNumber = new List<string>();
+        List<string> purchaseordernumber = new List<string>();
+
+        /// <summary>
+        /// Инициализация компонентов страницы Закупок
+        /// </summary>
         public PurchasePage()
         {
             InitializeComponent();
             DataGridsRefresh();
         }
 
+        /// <summary>
+        /// Обработчик кнопки удаления закупки
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnDelPurchase_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Вы точно хотите удалить данную Поставку?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -36,6 +52,12 @@ namespace AutoService
                 DataGridsRefresh();
             }
         }
+
+        /// <summary>
+        /// Обработчик изменения значений в DataGrid закупок
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void dgPurchaseOrder_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
             if(e.EditAction == DataGridEditAction.Commit)
@@ -53,6 +75,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения значений в DataGrid поставщиков
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void dgSuplier_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
             if (e.EditAction == DataGridEditAction.Commit)
@@ -70,6 +97,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчик удаления поставщика
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnDelSuplier_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Вы точно хотите удалить данную Поставку?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -79,9 +111,19 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчики добавления и вставления значений в тестовые поля
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void tb1_PreviewTextInputNum(object sender, TextCompositionEventArgs e) => new ValidationData().tb1_PreviewTextInputNum(sender, e);
         private void tb1_PastingNum(object sender, DataObjectPastingEventArgs e) => new ValidationData().tb1_PastingNum(sender, e);
 
+        /// <summary>
+        /// Обработчик изменения значений в DataGrid контракта
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void dgPurchaseContract_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
             if (e.EditAction == DataGridEditAction.Commit)
@@ -103,6 +145,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчик удаления контракта
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnDelPurchaseContract_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Вы точно хотите удалить данный контракт на Поставку?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -112,6 +159,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения значений в DataGrid расходников
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void dgDisposable_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
             if (e.EditAction == DataGridEditAction.Commit)
@@ -138,6 +190,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчик удаления расходников
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnDelDisposable_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Вы точно хотите удалить данный Расходник?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -147,12 +204,26 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обновление DataGrid-ов всей страницы
+        /// </summary>
         private void DataGridsRefresh()
         {
+            seriesNumber.Clear();
+            purchasecontractNumber.Clear();
+
             dbhelper.Refresh(dgDisposable, "select * from Disposable", grdPurchase);
+            //seriesNumber = dbhelper.EecuteQueryReader("select * from Disposable", seriesNumber, "seriesnumber");
+
             dbhelper.Refresh(dgPurchaseContract, "select * from PurchaseContract", grdPurchase);
+            //purchasecontractNumber = dbhelper.EecuteQueryReader("select * from PurchaseContract", purchasecontractNumber, "purchasecontractnumber");
+
             dbhelper.Refresh(dgSuplier, "select * from suplier; ", grdPurchase);
+            //inn = dbhelper.EecuteQueryReader("select * from suplier;", inn, "inn");
+
             dbhelper.Refresh(dgPurchaseOrder, "select * from purchaseorder; ", grdPurchase);
+            //purchaseordernumber = dbhelper.EecuteQueryReader("select * from purchaseorder; ", purchaseordernumber, "purchaseordernumber");
+
             dbhelper.BindComboBox(cbPurchaseOrder, "select * from purchaseorder", "purchaseordernumber", "purchaseordernumber");
             dbhelper.BindComboBox(cbSuplier, "select * from Suplier", "supliername", "inn");
             dbhelper.BindComboBox(cbEmployee, "select lastname ||' '|| firstname||' '|| middlename as colum, email from Users where RoleName = 'Сотрудник отдела закупок'", "colum", "email");

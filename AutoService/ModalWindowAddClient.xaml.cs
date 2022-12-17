@@ -19,12 +19,25 @@ namespace AutoService
     /// </summary>
     public partial class ModalWindowAddClient : Window
     {
+        //экземпляр класса управления БД
         DBHelper dbhelper = new DBHelper();
+
+        //экземпляр класса работы с электронной почтой
         EmailHelper emailHelper = new EmailHelper();
+
+        //экземпляр класса валидации
         ValidationData valid = new ValidationData();
+
         static string email = "";
         int Who = 0;
         string id = "";
+        
+        /// <summary>
+        /// Инициализация компонентов модального окна
+        /// </summary>
+        /// <param name="Email">электронная почта клиента</param>
+        /// <param name="who">разграничение на администратора и клиента</param>
+        /// <param name="ID">уникальный индетификатор пользователя</param>
         public ModalWindowAddClient(string Email, int who, string ID)
         {
             InitializeComponent();
@@ -38,6 +51,11 @@ namespace AutoService
             id = ID;
         }
 
+        /// <summary>
+        /// Обработчик сохранения данных
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void AddClient_Click(object sender, RoutedEventArgs e)
         {
             if (Who == 0)
@@ -66,6 +84,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчик закрытия модального окна
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (Who == 0)

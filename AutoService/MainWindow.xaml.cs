@@ -20,7 +20,9 @@ namespace AutoService
     /// </summary>
     public partial class MainWindow : Window
     {
-        DBHelper dbhelper = new DBHelper();
+        /// <summary>
+        /// Инициализация компонентов главного окна
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -28,11 +30,21 @@ namespace AutoService
             MainFrame.Navigate(new SignInPage());//ClientPage("4567865467"));//SalesDepartmentPage("diagram14@mail.ru"));//ClientPage("4567865467"));//new PurchasePage());//SignInPage());//new SignInPage());new DiagramAdmin() SalesDepartmentPage("diagram14@mail.ru"));
         }
 
+        /// <summary>
+        /// Обработчик кнопки перехода на прошлую страницу
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             FrameManager.MainFrame.GoBack();
         }
 
+        /// <summary>
+        /// Отрисовка кнопок перехода в зависимости от страницы
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void MainFrame_ContentRendered(object sender, EventArgs e)
         {
             if (((Page)MainFrame.Content).Title.ToString() == "DiagramAdmin")
@@ -81,11 +93,20 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Переход на страницу диаграмм
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnDiagram_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new DiagramAdmin());
         }
 
+        /// <summary>
+        /// Переход на страницу управления БД
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnDControl_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new AdminDataBaseControlPage());

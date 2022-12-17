@@ -20,9 +20,19 @@ namespace AutoService
     /// </summary>
     public partial class ClientOrderCreationPage : Page
     {
+        //экземпляр класса управления БД
         DBHelper dbhelper = new DBHelper();
+
+        //экземпляр класса валидации
         ValidationData valid = new ValidationData();
+
+        //Коллекция выбранных услуг
         List<string> addService = new List<string>();
+
+        /// <summary>
+        /// Инициализация компонентов страницы оформления заказа
+        /// </summary>
+        /// <param name="clientNumber">уникальный индетификатор клиента</param>
         public ClientOrderCreationPage(String clientNumber)
         {
             InitializeComponent();
@@ -35,24 +45,44 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчик сheckbox выбранных услуг
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void chDG_Checked(object sender, RoutedEventArgs e)
         {
             lbPriceEnding.Content = Convert.ToDouble(lbPriceEnding.Content.ToString()) + Convert.ToDouble(dbhelper.GetValueData(dgService, "price"));
             addService.Add(dbhelper.GetValueData(dgService, "servicename"));
         }
 
+        /// <summary>
+        /// ООбработчик вheckbox отмененных услуг
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void chDG_Unchecked(object sender, RoutedEventArgs e)
         {
             lbPriceEnding.Content = Convert.ToDouble(lbPriceEnding.Content.ToString()) - Convert.ToDouble(dbhelper.GetValueData(dgService, "price"));
             addService.Remove(dbhelper.GetValueData(dgService, "servicename"));
         }
 
+        /// <summary>
+        /// Обработчик выбора значения в DataGrid
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void dgService_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lbDescription.Document.Blocks.Clear();
             lbDescription.AppendText(dbhelper.EecuteQueryReaderOne($@"select ServiceDescription from Service where ServiceName = '{dbhelper.GetValueData(dgService, "servicename")}'","ServiceDescription"));
         }
 
+        /// <summary>
+        /// ООбработчик кнопки оформления заказа
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnAddOrder_Click(object sender, RoutedEventArgs e)
         {
             if (lbPriceEnding.Content.ToString() == "0")
@@ -60,7 +90,6 @@ namespace AutoService
             if(dpOrder.SelectedDate.ToString()!="" && cbCars.SelectedIndex != -1)
             {
                 string ContractNumber = "";
-                //Получить случайное число (в диапазоне от 0 до 10)
                 do
                 {
                     Random rnd = new Random();

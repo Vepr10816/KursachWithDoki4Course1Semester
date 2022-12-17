@@ -21,9 +21,9 @@
             <RowDefinition Height="35*"/>
             <RowDefinition Height="427*"/>
         </Grid.RowDefinitions>
-        <WindowsFormsHost  Grid.ColumnSpan="3" Grid.Row="1">
-            <charts:Chart x:Name="chart" >
-                <charts:Chart.Legends>
+        <WindowsFormsHost  Grid.ColumnSpan="3" Grid.Row="1" FontSize="20">
+            <charts:Chart x:Name="chart">
+                <charts:Chart.Legends >
                     <charts:Legend>
 
                     </charts:Legend>

@@ -20,11 +20,19 @@ namespace AutoService
     /// </summary>
     public partial class SignUpPage : Page
     {
+        /// <summary>
+        /// Инициализация компонентов страницы регистрации
+        /// </summary>
         public SignUpPage()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработчик кнопки регистрации
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnReg_Click(object sender, RoutedEventArgs e)
         {
             DBHelper dbhelper = new DBHelper();

@@ -11,8 +11,24 @@
             <Setter Property="Height" Value="30"/>-->
             <Setter Property="Margin" Value="2.5"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="15"/>
         </Style>
 
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
 
 
     </Application.Resources>

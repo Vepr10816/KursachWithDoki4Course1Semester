@@ -12,8 +12,16 @@ using System.Windows.Media;
 
 namespace AutoService
 {
+    /// <summary>
+    /// Валидация данных
+    /// </summary>
     class ValidationData
     {
+        /// <summary>
+        /// Валидация на цифры и английские буквы
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns>bool значение</returns>
         bool IsValidEngNum(char c)
         {
             if (c >= '0' && c <= '9')
@@ -28,6 +36,11 @@ namespace AutoService
             return false;
         }
 
+        /// <summary>
+        /// Валидация на цифры и русские буквы
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns>bool значение</returns>
         bool IsValidRusNum(char c)
         {
             if (c >= '0' && c <= '9')
@@ -42,7 +55,11 @@ namespace AutoService
             return false;
         }
 
-
+        /// <summary>
+        /// Валидация на русские буквы
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns>bool значение</returns>
         bool IsValidRus(char c)
         {
             if (c >= '0' && c <= '9')
@@ -57,6 +74,11 @@ namespace AutoService
             return false;
         }
 
+        /// <summary>
+        /// Валидация на цифры и английские буквы и русские буквы
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns>bool значение</returns>
         bool IsValidRusEngNum(char c)
         {
             if (c >= '0' && c <= '9')
@@ -75,7 +97,11 @@ namespace AutoService
             return false;
         }
 
-
+        /// <summary>
+        /// Валидация на цифры 
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns>bool значение</returns>
         bool IsValidNum(char c)
         {
             if (c >= '0' && c <= '9')
@@ -83,7 +109,11 @@ namespace AutoService
             return false;
         }
 
-
+        /// <summary>
+        /// Обработчики заполнения и вставки данных в textbox
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         public void tb1_PreviewTextInputAngNum(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !e.Text.All(IsValidEngNum);
@@ -145,7 +175,11 @@ namespace AutoService
                 e.CancelCommand();
         }
 
-
+        /// <summary>
+        /// Валидация электронной почты
+        /// </summary>
+        /// <param name="email">Электронная почта</param>
+        /// <returns>bool значение</returns>
         public bool IsValidEmail(string email)
         {
             var trimmedEmail = email.Trim();
@@ -167,6 +201,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Валидация пароля
+        /// </summary>
+        /// <param name="s">пароль</param>
+        /// <returns>bool значение</returns>
         public bool IsValidPassword(string s)
         {
             int contain = 0;
@@ -193,6 +232,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// хэширование MD5
+        /// </summary>
+        /// <param name="decrypted"></param>
+        /// <returns></returns>
         public string Encrypt(string decrypted)
         {
             byte[] data = UTF8Encoding.UTF8.GetBytes(decrypted);
@@ -217,6 +261,11 @@ namespace AutoService
             return UTF8Encoding.UTF8.GetString(result);
         }
 
+        /// <summary>
+        /// Вывод ошибок
+        /// </summary>
+        /// <param name="errorMessage">сообщение об ошибке</param>
+        /// <returns></returns>
         public async Task Show(string errorMessage)
         {
             Grid gridError = Application.Current.MainWindow.FindName("ErrorGrid") as Grid;
@@ -226,16 +275,10 @@ namespace AutoService
             label.Content = errorMessage;
             gridError.Background = new SolidColorBrush(Colors.Black);
 
-            //Grid mainGrid = Application.Current.MainWindow.FindName("MainGrid") as Grid;
-            //Grid.SetRow(gridError, 2);
             gridError.VerticalAlignment = VerticalAlignment.Stretch;
-            //GridLengthConverter gridLengthConverter = new GridLengthConverter();
-            //errorRow.Height = (GridLength)gridLengthConverter.ConvertFrom(75);
             await Task.Delay(3000);
             gridError.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#445c93"));
-            //Grid.SetRow(gridError, 3);
             gridError.VerticalAlignment = VerticalAlignment.Bottom;
-            //errorRow.Height = (GridLength)gridLengthConverter.ConvertFrom(30);
             label.Visibility = Visibility.Hidden;
         }
     }

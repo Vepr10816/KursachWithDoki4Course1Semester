@@ -7,8 +7,14 @@ using System.Windows.Controls;
 
 namespace AutoService
 {
+    /// <summary>
+    /// Навигация страниц
+    /// </summary>
     class FrameManager
     {
+        /// <summary>
+        /// Получение страниц
+        /// </summary>
         public static Frame MainFrame { get; set; }
     }
 }

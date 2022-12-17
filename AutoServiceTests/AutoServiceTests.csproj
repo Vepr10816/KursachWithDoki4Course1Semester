@@ -78,9 +78,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AutoService\AutoService.csproj">
       <Project>{c66a06f4-39ff-4ec0-a2b5-307f5fd2be75}</Project>
       <Name>AutoService</Name>

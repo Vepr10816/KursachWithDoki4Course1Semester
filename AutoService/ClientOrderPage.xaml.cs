@@ -20,11 +20,25 @@ namespace AutoService
     /// </summary>
     public partial class ClientOrderPage : Page
     {
+        //Экземпляр класса работы с БД
         DBHelper dbhelper = new DBHelper();
+
+        //Коллекция номеров машин
         List<string> carNumbersClient = new List<string>();
+
+        //хранения запроса
         string Query = "";
+
+        //коллекция статусов
         List<string> statuses = new List<string>();
+
+        //коллекция номеров диагностиуи
         List<string> diagnostics = new List<string>();
+
+        /// <summary>
+        /// Инициализация компонентов страницы 
+        /// </summary>
+        /// <param name="clientNumber">уникальный индетификатор клиента</param>
         public ClientOrderPage(String clientNumber)
         {
             InitializeComponent();
@@ -39,6 +53,11 @@ namespace AutoService
             Query = query;
         }
 
+        /// <summary>
+        /// Обработчик выбора значения DataGrid заказов
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             diagnostics.Clear();
@@ -77,6 +96,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчик кнопки отмены заказа
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnCancelOrder_Click(object sender, RoutedEventArgs e)
         {
             if(dgHistory.SelectedIndex != -1)

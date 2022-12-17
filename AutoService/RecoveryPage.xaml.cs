@@ -20,16 +20,34 @@ namespace AutoService
     /// </summary>
     public partial class RecoveryPage : Page
     {
+        //экземпляр класса управления БД
         DBHelper dbhelper = new DBHelper();
+
+        //экземпляр класса работы с электронной почтой
         EmailHelper emailHelper = new EmailHelper();
+
+        //экземпляр класса валидации
         ValidationData valid = new ValidationData();
+
+        //экземпляр класса генерации рандомных чисел
         Random r = new Random();
+
+        //Сгенерированный код
         int code;
+
+        /// <summary>
+        /// Инициализация страницы востанновления пароля
+        /// </summary>
         public RecoveryPage()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработчик кнопки отправки электронного письма
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnSendMessage_Click(object sender, RoutedEventArgs e)
         {
             code = r.Next(100000, 999999);
@@ -43,6 +61,11 @@ namespace AutoService
                 valid.Show("Такой почты нет в системе").GetAwaiter();
         }
 
+        /// <summary>
+        /// Обработчик кнопки проверки кода
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnCheckCode_Click(object sender, RoutedEventArgs e)
         {
             if (tbCode.Text == code.ToString())
@@ -51,9 +74,14 @@ namespace AutoService
                 btnCheckCode.IsEnabled = false;
             }
             else
-                valid.Show("Невверный код для восстанвления").GetAwaiter();
+                valid.Show("Неверный код для восстановления").GetAwaiter();
         }
 
+        /// <summary>
+        /// Обработчик кнопки восстановления пароля
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnRecovery_Click(object sender, RoutedEventArgs e)
         {
             if (tbCode.IsEnabled == true)

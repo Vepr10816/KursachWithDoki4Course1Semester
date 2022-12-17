@@ -36,11 +36,11 @@
             <ColumnDefinition Width="108*"/>
             <ColumnDefinition Width="66*"/>
         </Grid.ColumnDefinitions>
-        <TextBox TextChanged="tbSearch_TextChanged" Name="tbSearch" BorderBrush="#445c93" Grid.Row="0"  Background="LightGray" Grid.ColumnSpan="5" Margin="0,0,0.4,0.6"/>
+        <TextBox TextChanged="tbSearch_TextChanged" Name="tbSearch" BorderBrush="#445c93" Grid.Row="0"  Background="LightGray" Grid.ColumnSpan="5" Margin="0,0,0.4,0.6" FontSize="15"/>
         <ComboBox Grid.Row="0" Grid.Column="6" Name="cbYearSearch" SelectionChanged="cbYearSearch_SelectionChanged" Grid.ColumnSpan="3" Margin="0.2,0,60.6,0.6"/>
         <Button Grid.Row="0" Grid.Column="9" Name="btnClearSearch" Content="Убрать фильтр" FontSize="10" Click="btnClearSearch_Click" />
         <Label Content="Фильтр:" Grid.Row="0" Grid.Column="5" FontSize="10"   />
-        <DataGrid Grid.Row="1" Name="dgUsers" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Grid.ColumnSpan="11" Margin="0,0.4,0,1"  SelectionChanged="Data_SelectionChanged">
+        <DataGrid Grid.Row="1" Name="dgUsers" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" Grid.ColumnSpan="11" Margin="0,0.4,0,1"  SelectionChanged="Data_SelectionChanged" >
             <DataGrid.Columns>
                 <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
@@ -58,9 +58,9 @@
         <Label Content="Email:" Grid.Row="3" HorizontalAlignment="Center" />
         <Label Content="Пароль:" Grid.Row="5" HorizontalAlignment="Center" />
         <Label Content="Должность:" Grid.Row="7" HorizontalAlignment="Center" />
-        <TextBox Grid.Row="3" Grid.Column="1" Name="tbEmail" Grid.ColumnSpan="2" PreviewTextInput= "tb1_PreviewTextInputEngNum" DataObject.Pasting="tb1_PastingEngNum"/>
-        <TextBox Grid.Row="5" Grid.Column="1" Name="tbPassword" Grid.ColumnSpan="2" PreviewTextInput= "tb1_PreviewTextInputEngNum" DataObject.Pasting="tb1_PastingEngNum"/>
-        <ComboBox Grid.Row="7" Grid.Column="1" Name="cbPost" Grid.ColumnSpan="2">
+        <TextBox Grid.Row="3" Grid.Column="1" Name="tbEmail" Grid.ColumnSpan="2" PreviewTextInput= "tb1_PreviewTextInputEngNum" DataObject.Pasting="tb1_PastingEngNum" FontSize="20"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Name="tbPassword" Grid.ColumnSpan="2" PreviewTextInput= "tb1_PreviewTextInputEngNum" DataObject.Pasting="tb1_PastingEngNum" FontSize="20"/>
+        <ComboBox Grid.Row="7" Grid.Column="1" Name="cbPost" Grid.ColumnSpan="2" FontSize="20">
             <ComboBoxItem>Администратор</ComboBoxItem>
             <ComboBoxItem>Сотрудник отдела закупок</ComboBoxItem>
             <ComboBoxItem>Клиент</ComboBoxItem>
@@ -72,9 +72,9 @@
         <Label Content="Фамилия:" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" />
         <Label Content="Имя:" Grid.Row="5" Grid.Column="5" HorizontalAlignment="Left"/>
         <Label Content="Отчество:" Grid.Row="7" Grid.Column="5" HorizontalAlignment="Left" />
-        <TextBox Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="3" Name="tbLastName" PreviewTextInput= "tb1_PreviewTextInputRus" DataObject.Pasting="tb1_PastingRus"/>
-        <TextBox Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="3" Name="tbFirstName" />
-        <TextBox Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="3" Name="tbMiddleName" />
+        <TextBox Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="3" Name="tbLastName" PreviewTextInput= "tb1_PreviewTextInputRus" DataObject.Pasting="tb1_PastingRus" FontSize="20"/>
+        <TextBox Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="3" Name="tbFirstName" FontSize="20"/>
+        <TextBox Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="3" Name="tbMiddleName" FontSize="20"/>
 
         <Button Grid.Row="9" Grid.Column="2" Content="Добавить" Name="btnAdd" Click="btnAdd_Click"/>
         <Button Grid.Row="9" Grid.Column="4" Content="Изменить" Name="btnUpd" Grid.ColumnSpan="2" Click="btnUpd_Click"/>

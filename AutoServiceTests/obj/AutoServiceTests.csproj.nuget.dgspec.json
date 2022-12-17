@@ -121,17 +121,33 @@
       "frameworks": {
         "net472": {
           "dependencies": {
+            "EPPlus": {
+              "target": "Package",
+              "version": "[6.1.1, )"
+            },
             "Extended.Wpf.Toolkit": {
               "target": "Package",
               "version": "[4.4.0, )"
+            },
+            "FreeSpire.XLS": {
+              "target": "Package",
+              "version": "[12.7.0, )"
             },
             "LiveCharts.Wpf": {
               "target": "Package",
               "version": "[0.9.7, )"
             },
+            "Microsoft.Office.Interop.Excel": {
+              "target": "Package",
+              "version": "[15.0.4795.1001, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[6.0.7, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           }
         }

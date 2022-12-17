@@ -22,7 +22,12 @@ namespace AutoService
     /// </summary>
     public partial class AdminDataBaseControlPage : Page
     {
+        //экземпляр класса управления БД
         DBHelper dbhelper = new DBHelper();
+
+        /// <summary>
+        /// Инициализация компонентов страницы управления БД
+        /// </summary>
         public AdminDataBaseControlPage()
         {
             InitializeComponent();
@@ -32,6 +37,11 @@ namespace AutoService
                 cbDateRollback.Items.Add(file.Name.Insert(2, ".").Insert(5, ".").Replace(".backup",""));
         }
 
+        /// <summary>
+        /// Обработчик кнопки резерного копирования
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnRezCopy_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog()
@@ -47,6 +57,11 @@ namespace AutoService
 
         }
 
+        /// <summary>
+        /// Обработчик кнопки бэкапа
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnBackup_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog()
@@ -60,6 +75,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обработчик отката системы по дате
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="e">данные события</param>
         private void btnRollback_Click(object sender, RoutedEventArgs e)
         {
             dbhelper.Restore((System.IO.Directory.GetCurrentDirectory() + @"\BackupFiles").Replace(@"\bin", "").Replace(@"\Debug", "")+@"\"+cbDateRollback.SelectedItem.ToString().Replace(".","")+".backup");

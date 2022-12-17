@@ -84,3 +84,11 @@ C:\Users\kruto\source\repos\AutoService\AutoService\obj\Debug\SalesDepartmentPag
 C:\Users\kruto\source\repos\AutoService\AutoService\obj\Debug\SalesDepartmentPage.baml
 C:\Users\kruto\source\repos\AutoService\AutoService\obj\Debug\RepairPage.g.cs
 C:\Users\kruto\source\repos\AutoService\AutoService\obj\Debug\RepairPage.baml
+C:\Users\kruto\source\repos\AutoService\AutoService\bin\Debug\EPPlus.dll
+C:\Users\kruto\source\repos\AutoService\AutoService\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\kruto\source\repos\AutoService\AutoService\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\kruto\source\repos\AutoService\AutoService\bin\Debug\Spire.Pdf.dll
+C:\Users\kruto\source\repos\AutoService\AutoService\bin\Debug\Spire.XLS.dll
+C:\Users\kruto\source\repos\AutoService\AutoService\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\kruto\source\repos\AutoService\AutoService\bin\Debug\Microsoft.Office.Interop.Excel.dll
+C:\Users\kruto\source\repos\AutoService\AutoService\bin\Debug\System.Drawing.Common.dll

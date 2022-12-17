@@ -2,6 +2,51 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.7.2": {
+      "EPPlus/6.1.1": {
+        "type": "package",
+        "dependencies": {
+          "EPPlus.Interfaces": "6.1.1",
+          "EPPlus.System.Drawing": "6.1.1",
+          "Microsoft.IO.RecyclableMemoryStream": "1.4.1"
+        },
+        "frameworkAssemblies": [
+          "PresentationCore",
+          "System",
+          "System.Core",
+          "System.Data",
+          "System.Security",
+          "System.Threading.Tasks",
+          "System.Xml",
+          "System.configuration"
+        ],
+        "compile": {
+          "lib/net462/EPPlus.dll": {}
+        },
+        "runtime": {
+          "lib/net462/EPPlus.dll": {}
+        }
+      },
+      "EPPlus.Interfaces/6.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/net462/EPPlus.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/net462/EPPlus.Interfaces.dll": {}
+        }
+      },
+      "EPPlus.System.Drawing/6.1.1": {
+        "type": "package",
+        "dependencies": {
+          "EPPlus.Interfaces": "6.1.1"
+        },
+        "compile": {
+          "lib/net462/EPPlus.System.Drawing.dll": {}
+        },
+        "runtime": {
+          "lib/net462/EPPlus.System.Drawing.dll": {}
+        }
+      },
       "Extended.Wpf.Toolkit/4.4.0": {
         "type": "package",
         "compile": {
@@ -57,6 +102,17 @@
           }
         }
       },
+      "FreeSpire.XLS/12.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Spire.Pdf.dll": {},
+          "lib/net40/Spire.XLS.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Spire.Pdf.dll": {},
+          "lib/net40/Spire.XLS.dll": {}
+        }
+      },
       "LiveCharts/0.9.7": {
         "type": "package",
         "compile": {
@@ -101,6 +157,24 @@
         },
         "runtime": {
           "lib/net461/Microsoft.Bcl.HashCode.dll": {}
+        }
+      },
+      "Microsoft.IO.RecyclableMemoryStream/1.4.1": {
+        "type": "package",
+        "compile": {
+          "lib/net46/Microsoft.IO.RecyclableMemoryStream.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Microsoft.IO.RecyclableMemoryStream.dll": {}
+        }
+      },
+      "Microsoft.Office.Interop.Excel/15.0.4795.1001": {
+        "type": "package",
+        "compile": {
+          "lib/net20/Microsoft.Office.Interop.Excel.dll": {}
+        },
+        "runtime": {
+          "lib/net20/Microsoft.Office.Interop.Excel.dll": {}
         }
       },
       "Npgsql/6.0.7": {
@@ -156,6 +230,18 @@
         },
         "runtime": {
           "lib/net461/System.Diagnostics.DiagnosticSource.dll": {}
+        }
+      },
+      "System.Drawing.Common/7.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net462/System.Drawing.Common.dll": {}
+        },
+        "runtime": {
+          "lib/net462/System.Drawing.Common.dll": {}
+        },
+        "build": {
+          "buildTransitive/net462/_._": {}
         }
       },
       "System.Memory/4.5.4": {
@@ -278,6 +364,51 @@
       }
     },
     ".NETFramework,Version=v4.7.2/win": {
+      "EPPlus/6.1.1": {
+        "type": "package",
+        "dependencies": {
+          "EPPlus.Interfaces": "6.1.1",
+          "EPPlus.System.Drawing": "6.1.1",
+          "Microsoft.IO.RecyclableMemoryStream": "1.4.1"
+        },
+        "frameworkAssemblies": [
+          "PresentationCore",
+          "System",
+          "System.Core",
+          "System.Data",
+          "System.Security",
+          "System.Threading.Tasks",
+          "System.Xml",
+          "System.configuration"
+        ],
+        "compile": {
+          "lib/net462/EPPlus.dll": {}
+        },
+        "runtime": {
+          "lib/net462/EPPlus.dll": {}
+        }
+      },
+      "EPPlus.Interfaces/6.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/net462/EPPlus.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/net462/EPPlus.Interfaces.dll": {}
+        }
+      },
+      "EPPlus.System.Drawing/6.1.1": {
+        "type": "package",
+        "dependencies": {
+          "EPPlus.Interfaces": "6.1.1"
+        },
+        "compile": {
+          "lib/net462/EPPlus.System.Drawing.dll": {}
+        },
+        "runtime": {
+          "lib/net462/EPPlus.System.Drawing.dll": {}
+        }
+      },
       "Extended.Wpf.Toolkit/4.4.0": {
         "type": "package",
         "compile": {
@@ -333,6 +464,17 @@
           }
         }
       },
+      "FreeSpire.XLS/12.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Spire.Pdf.dll": {},
+          "lib/net40/Spire.XLS.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Spire.Pdf.dll": {},
+          "lib/net40/Spire.XLS.dll": {}
+        }
+      },
       "LiveCharts/0.9.7": {
         "type": "package",
         "compile": {
@@ -377,6 +519,24 @@
         },
         "runtime": {
           "lib/net461/Microsoft.Bcl.HashCode.dll": {}
+        }
+      },
+      "Microsoft.IO.RecyclableMemoryStream/1.4.1": {
+        "type": "package",
+        "compile": {
+          "lib/net46/Microsoft.IO.RecyclableMemoryStream.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Microsoft.IO.RecyclableMemoryStream.dll": {}
+        }
+      },
+      "Microsoft.Office.Interop.Excel/15.0.4795.1001": {
+        "type": "package",
+        "compile": {
+          "lib/net20/Microsoft.Office.Interop.Excel.dll": {}
+        },
+        "runtime": {
+          "lib/net20/Microsoft.Office.Interop.Excel.dll": {}
         }
       },
       "Npgsql/6.0.7": {
@@ -432,6 +592,18 @@
         },
         "runtime": {
           "lib/net461/System.Diagnostics.DiagnosticSource.dll": {}
+        }
+      },
+      "System.Drawing.Common/7.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net462/System.Drawing.Common.dll": {}
+        },
+        "runtime": {
+          "lib/net462/System.Drawing.Common.dll": {}
+        },
+        "build": {
+          "buildTransitive/net462/_._": {}
         }
       },
       "System.Memory/4.5.4": {
@@ -554,6 +726,51 @@
       }
     },
     ".NETFramework,Version=v4.7.2/win-x64": {
+      "EPPlus/6.1.1": {
+        "type": "package",
+        "dependencies": {
+          "EPPlus.Interfaces": "6.1.1",
+          "EPPlus.System.Drawing": "6.1.1",
+          "Microsoft.IO.RecyclableMemoryStream": "1.4.1"
+        },
+        "frameworkAssemblies": [
+          "PresentationCore",
+          "System",
+          "System.Core",
+          "System.Data",
+          "System.Security",
+          "System.Threading.Tasks",
+          "System.Xml",
+          "System.configuration"
+        ],
+        "compile": {
+          "lib/net462/EPPlus.dll": {}
+        },
+        "runtime": {
+          "lib/net462/EPPlus.dll": {}
+        }
+      },
+      "EPPlus.Interfaces/6.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/net462/EPPlus.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/net462/EPPlus.Interfaces.dll": {}
+        }
+      },
+      "EPPlus.System.Drawing/6.1.1": {
+        "type": "package",
+        "dependencies": {
+          "EPPlus.Interfaces": "6.1.1"
+        },
+        "compile": {
+          "lib/net462/EPPlus.System.Drawing.dll": {}
+        },
+        "runtime": {
+          "lib/net462/EPPlus.System.Drawing.dll": {}
+        }
+      },
       "Extended.Wpf.Toolkit/4.4.0": {
         "type": "package",
         "compile": {
@@ -609,6 +826,17 @@
           }
         }
       },
+      "FreeSpire.XLS/12.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Spire.Pdf.dll": {},
+          "lib/net40/Spire.XLS.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Spire.Pdf.dll": {},
+          "lib/net40/Spire.XLS.dll": {}
+        }
+      },
       "LiveCharts/0.9.7": {
         "type": "package",
         "compile": {
@@ -653,6 +881,24 @@
         },
         "runtime": {
           "lib/net461/Microsoft.Bcl.HashCode.dll": {}
+        }
+      },
+      "Microsoft.IO.RecyclableMemoryStream/1.4.1": {
+        "type": "package",
+        "compile": {
+          "lib/net46/Microsoft.IO.RecyclableMemoryStream.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Microsoft.IO.RecyclableMemoryStream.dll": {}
+        }
+      },
+      "Microsoft.Office.Interop.Excel/15.0.4795.1001": {
+        "type": "package",
+        "compile": {
+          "lib/net20/Microsoft.Office.Interop.Excel.dll": {}
+        },
+        "runtime": {
+          "lib/net20/Microsoft.Office.Interop.Excel.dll": {}
         }
       },
       "Npgsql/6.0.7": {
@@ -708,6 +954,18 @@
         },
         "runtime": {
           "lib/net461/System.Diagnostics.DiagnosticSource.dll": {}
+        }
+      },
+      "System.Drawing.Common/7.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net462/System.Drawing.Common.dll": {}
+        },
+        "runtime": {
+          "lib/net462/System.Drawing.Common.dll": {}
+        },
+        "build": {
+          "buildTransitive/net462/_._": {}
         }
       },
       "System.Memory/4.5.4": {
@@ -830,6 +1088,51 @@
       }
     },
     ".NETFramework,Version=v4.7.2/win-x86": {
+      "EPPlus/6.1.1": {
+        "type": "package",
+        "dependencies": {
+          "EPPlus.Interfaces": "6.1.1",
+          "EPPlus.System.Drawing": "6.1.1",
+          "Microsoft.IO.RecyclableMemoryStream": "1.4.1"
+        },
+        "frameworkAssemblies": [
+          "PresentationCore",
+          "System",
+          "System.Core",
+          "System.Data",
+          "System.Security",
+          "System.Threading.Tasks",
+          "System.Xml",
+          "System.configuration"
+        ],
+        "compile": {
+          "lib/net462/EPPlus.dll": {}
+        },
+        "runtime": {
+          "lib/net462/EPPlus.dll": {}
+        }
+      },
+      "EPPlus.Interfaces/6.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/net462/EPPlus.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/net462/EPPlus.Interfaces.dll": {}
+        }
+      },
+      "EPPlus.System.Drawing/6.1.1": {
+        "type": "package",
+        "dependencies": {
+          "EPPlus.Interfaces": "6.1.1"
+        },
+        "compile": {
+          "lib/net462/EPPlus.System.Drawing.dll": {}
+        },
+        "runtime": {
+          "lib/net462/EPPlus.System.Drawing.dll": {}
+        }
+      },
       "Extended.Wpf.Toolkit/4.4.0": {
         "type": "package",
         "compile": {
@@ -885,6 +1188,17 @@
           }
         }
       },
+      "FreeSpire.XLS/12.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Spire.Pdf.dll": {},
+          "lib/net40/Spire.XLS.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Spire.Pdf.dll": {},
+          "lib/net40/Spire.XLS.dll": {}
+        }
+      },
       "LiveCharts/0.9.7": {
         "type": "package",
         "compile": {
@@ -929,6 +1243,24 @@
         },
         "runtime": {
           "lib/net461/Microsoft.Bcl.HashCode.dll": {}
+        }
+      },
+      "Microsoft.IO.RecyclableMemoryStream/1.4.1": {
+        "type": "package",
+        "compile": {
+          "lib/net46/Microsoft.IO.RecyclableMemoryStream.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Microsoft.IO.RecyclableMemoryStream.dll": {}
+        }
+      },
+      "Microsoft.Office.Interop.Excel/15.0.4795.1001": {
+        "type": "package",
+        "compile": {
+          "lib/net20/Microsoft.Office.Interop.Excel.dll": {}
+        },
+        "runtime": {
+          "lib/net20/Microsoft.Office.Interop.Excel.dll": {}
         }
       },
       "Npgsql/6.0.7": {
@@ -984,6 +1316,18 @@
         },
         "runtime": {
           "lib/net461/System.Diagnostics.DiagnosticSource.dll": {}
+        }
+      },
+      "System.Drawing.Common/7.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net462/System.Drawing.Common.dll": {}
+        },
+        "runtime": {
+          "lib/net462/System.Drawing.Common.dll": {}
+        },
+        "build": {
+          "buildTransitive/net462/_._": {}
         }
       },
       "System.Memory/4.5.4": {
@@ -1107,6 +1451,73 @@
     }
   },
   "libraries": {
+    "EPPlus/6.1.1": {
+      "sha512": "mlmFoFM/FPHCGPUw5kUgh2y4ykLXXhT+o7CEhQm9LakPElHzzblvkRSY0F7D82iM8BjA9OtH9IchSqj+OPN5Wg==",
+      "type": "package",
+      "path": "epplus/6.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "EPPlusLogo.png",
+        "epplus.6.1.1.nupkg.sha512",
+        "epplus.nuspec",
+        "lib/net35/EPPlus.dll",
+        "lib/net35/EPPlus.xml",
+        "lib/net462/EPPlus.dll",
+        "lib/net462/EPPlus.xml",
+        "lib/net6.0/EPPlus.dll",
+        "lib/net6.0/EPPlus.xml",
+        "lib/net7.0/EPPlus.dll",
+        "lib/net7.0/EPPlus.xml",
+        "lib/netstandard2.0/EPPlus.dll",
+        "lib/netstandard2.0/EPPlus.xml",
+        "lib/netstandard2.1/EPPlus.dll",
+        "lib/netstandard2.1/EPPlus.xml",
+        "license.md",
+        "readme.md",
+        "readme.txt"
+      ]
+    },
+    "EPPlus.Interfaces/6.1.1": {
+      "sha512": "y7dkrOoE1ZR9Vgy1Jf2rEIaTf3SHlUjYt01NklP+F5Qh7S2ruPbzTcpYLRWMeXiG8XL8h2jqX4CyIkFt3NQGZw==",
+      "type": "package",
+      "path": "epplus.interfaces/6.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "EPPlusLogo.png",
+        "epplus.interfaces.6.1.1.nupkg.sha512",
+        "epplus.interfaces.nuspec",
+        "lib/net35/EPPlus.Interfaces.dll",
+        "lib/net462/EPPlus.Interfaces.dll",
+        "lib/net6.0/EPPlus.Interfaces.dll",
+        "lib/net7.0/EPPlus.Interfaces.dll",
+        "lib/netstandard2.0/EPPlus.Interfaces.dll",
+        "lib/netstandard2.1/EPPlus.Interfaces.dll",
+        "license.md",
+        "readme.md"
+      ]
+    },
+    "EPPlus.System.Drawing/6.1.1": {
+      "sha512": "lRF5gHYrmkHOOiLMI0t6q8zNYjUrzRgAM5BCXumv5xiqXko8fx3AWI+HCNZfhEqVFGOop+42KfR5GiUcCoyoMw==",
+      "type": "package",
+      "path": "epplus.system.drawing/6.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "EPPlusLogo.png",
+        "epplus.system.drawing.6.1.1.nupkg.sha512",
+        "epplus.system.drawing.nuspec",
+        "lib/net35/EPPlus.System.Drawing.dll",
+        "lib/net462/EPPlus.System.Drawing.dll",
+        "lib/net6.0/EPPlus.System.Drawing.dll",
+        "lib/net7.0/EPPlus.System.Drawing.dll",
+        "lib/netstandard2.0/EPPlus.System.Drawing.dll",
+        "lib/netstandard2.1/EPPlus.System.Drawing.dll",
+        "license.md",
+        "readme.md"
+      ]
+    },
     "Extended.Wpf.Toolkit/4.4.0": {
       "sha512": "EAG/XbjY+m9x1zHj2OE62C8X/Nm09gHyrhi3wnbT/8L06CTW4jtaz4RwN/nupx3sV5U3xsNmeRDILvRw3WO9Ew==",
       "type": "package",
@@ -1154,6 +1565,38 @@
         "lib/net5.0/sv/Xceed.Wpf.AvalonDock.NET5.resources.dll",
         "lib/net5.0/zh-Hans/Xceed.Wpf.AvalonDock.NET5.resources.dll",
         "tools/install.ps1"
+      ]
+    },
+    "FreeSpire.XLS/12.7.0": {
+      "sha512": "3WgGfpfgPtPIU/TGYdCjnTsXHMgGce4xsP3LP0Napab8jBXwLyBHoPsomTgEin71qZ5JHrC4KWn+tyvonIlk2w==",
+      "type": "package",
+      "path": "freespire.xls/12.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "freespire.xls.12.7.0.nupkg.sha512",
+        "freespire.xls.nuspec",
+        "lib/MonoAndroid/Spire.Pdf.dll",
+        "lib/MonoAndroid/Spire.Pdf.xml",
+        "lib/MonoAndroid/Spire.XLS.dll",
+        "lib/MonoAndroid/Spire.XLS.xml",
+        "lib/net40/Spire.Pdf.dll",
+        "lib/net40/Spire.Pdf.xml",
+        "lib/net40/Spire.XLS.dll",
+        "lib/net40/Spire.XLS.xml",
+        "lib/net6.0/Spire.Pdf.dll",
+        "lib/net6.0/Spire.Pdf.xml",
+        "lib/net6.0/Spire.XLS.dll",
+        "lib/net6.0/Spire.XLS.xml",
+        "lib/netcoreapp2.0/Spire.Pdf.dll",
+        "lib/netcoreapp2.0/Spire.Pdf.xml",
+        "lib/netcoreapp2.0/Spire.XLS.dll",
+        "lib/netcoreapp2.0/Spire.XLS.xml",
+        "lib/xamarinios/Spire.Pdf.dll",
+        "lib/xamarinios/Spire.Pdf.xml",
+        "lib/xamarinios/Spire.XLS.dll",
+        "lib/xamarinios/Spire.XLS.xml",
+        "license.txt"
       ]
     },
     "LiveCharts/0.9.7": {
@@ -1243,6 +1686,44 @@
         "ref/netstandard2.1/Microsoft.Bcl.HashCode.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Microsoft.IO.RecyclableMemoryStream/1.4.1": {
+      "sha512": "6A0fyZkxoUUj1dpXzLAWwI89YmKZ+ZSp1DCg+gN6llcXJwfYo1IIQZoCkuo6T7vUxw/w1CSk/Pl04NQ4fno+DQ==",
+      "type": "package",
+      "path": "microsoft.io.recyclablememorystream/1.4.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/Microsoft.IO.RecyclableMemoryStream.dll",
+        "lib/net40/Microsoft.IO.RecyclableMemoryStream.xml",
+        "lib/net45/Microsoft.IO.RecyclableMemoryStream.dll",
+        "lib/net45/Microsoft.IO.RecyclableMemoryStream.xml",
+        "lib/net46/Microsoft.IO.RecyclableMemoryStream.dll",
+        "lib/net46/Microsoft.IO.RecyclableMemoryStream.xml",
+        "lib/netcoreapp2.1/Microsoft.IO.RecyclableMemoryStream.dll",
+        "lib/netcoreapp2.1/Microsoft.IO.RecyclableMemoryStream.xml",
+        "lib/netstandard1.4/Microsoft.IO.RecyclableMemoryStream.dll",
+        "lib/netstandard1.4/Microsoft.IO.RecyclableMemoryStream.xml",
+        "lib/netstandard2.0/Microsoft.IO.RecyclableMemoryStream.dll",
+        "lib/netstandard2.0/Microsoft.IO.RecyclableMemoryStream.xml",
+        "lib/netstandard2.1/Microsoft.IO.RecyclableMemoryStream.dll",
+        "lib/netstandard2.1/Microsoft.IO.RecyclableMemoryStream.xml",
+        "microsoft.io.recyclablememorystream.1.4.1.nupkg.sha512",
+        "microsoft.io.recyclablememorystream.nuspec"
+      ]
+    },
+    "Microsoft.Office.Interop.Excel/15.0.4795.1001": {
+      "sha512": "cuvqi/U5MYSM0gvR2l90q0m/urRgmg69EiwP5VWp1RcaJ0YT5G26Va5LaOZ3KJFc22FNihS5CUjeePUp2YpGQA==",
+      "type": "package",
+      "path": "microsoft.office.interop.excel/15.0.4795.1001",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net20/Microsoft.Office.Interop.Excel.dll",
+        "lib/netstandard2.0/Microsoft.Office.Interop.Excel.dll",
+        "microsoft.office.interop.excel.15.0.4795.1001.nupkg.sha512",
+        "microsoft.office.interop.excel.nuspec"
       ]
     },
     "Npgsql/6.0.7": {
@@ -1344,6 +1825,43 @@
         "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.xml",
         "system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
         "system.diagnostics.diagnosticsource.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.Drawing.Common/7.0.0": {
+      "sha512": "KIX+oBU38pxkKPxvLcLfIkOV5Ien8ReN78wro7OF5/erwcmortzeFx+iBswlh2Vz6gVne0khocQudGwaO1Ey6A==",
+      "type": "package",
+      "path": "system.drawing.common/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Drawing.Common.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Drawing.Common.targets",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net462/System.Drawing.Common.dll",
+        "lib/net462/System.Drawing.Common.xml",
+        "lib/net6.0/System.Drawing.Common.dll",
+        "lib/net6.0/System.Drawing.Common.xml",
+        "lib/net7.0/System.Drawing.Common.dll",
+        "lib/net7.0/System.Drawing.Common.xml",
+        "lib/netstandard2.0/System.Drawing.Common.dll",
+        "lib/netstandard2.0/System.Drawing.Common.xml",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "runtimes/win/lib/net6.0/System.Drawing.Common.dll",
+        "runtimes/win/lib/net6.0/System.Drawing.Common.xml",
+        "runtimes/win/lib/net7.0/System.Drawing.Common.dll",
+        "runtimes/win/lib/net7.0/System.Drawing.Common.xml",
+        "system.drawing.common.7.0.0.nupkg.sha512",
+        "system.drawing.common.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
@@ -1634,9 +2152,13 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
+      "EPPlus >= 6.1.1",
       "Extended.Wpf.Toolkit >= 4.4.0",
+      "FreeSpire.XLS >= 12.7.0",
       "LiveCharts.Wpf >= 0.9.7",
-      "Npgsql >= 6.0.7"
+      "Microsoft.Office.Interop.Excel >= 15.0.4795.1001",
+      "Npgsql >= 6.0.7",
+      "System.Drawing.Common >= 7.0.0"
     ]
   },
   "packageFolders": {
@@ -1672,17 +2194,33 @@
     "frameworks": {
       "net472": {
         "dependencies": {
+          "EPPlus": {
+            "target": "Package",
+            "version": "[6.1.1, )"
+          },
           "Extended.Wpf.Toolkit": {
             "target": "Package",
             "version": "[4.4.0, )"
+          },
+          "FreeSpire.XLS": {
+            "target": "Package",
+            "version": "[12.7.0, )"
           },
           "LiveCharts.Wpf": {
             "target": "Package",
             "version": "[0.9.7, )"
           },
+          "Microsoft.Office.Interop.Excel": {
+            "target": "Package",
+            "version": "[15.0.4795.1001, )"
+          },
           "Npgsql": {
             "target": "Package",
             "version": "[6.0.7, )"
+          },
+          "System.Drawing.Common": {
+            "target": "Package",
+            "version": "[7.0.0, )"
           }
         }
       }

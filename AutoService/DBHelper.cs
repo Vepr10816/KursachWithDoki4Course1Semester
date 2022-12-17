@@ -15,15 +15,32 @@ using System.Windows.Documents;
 
 namespace AutoService
 {
+    /// <summary>
+    /// Класс формирования запросов в БД
+    /// </summary>
     public class DBHelper
     {
-        public static string conn_param = "Server=192.168.231.204; Port=5432;User Id=postgres;Password=1;Database=AutoService; Timeout=300; CommandTimeout=300"; //25.41.59.168 192.168.169.204 192.168.0.16
+        //Строка подключения
+        public static string conn_param = "Server=192.168.0.12; Port=5432;User Id=postgres;Password=1;Database=AutoService; Timeout=300; CommandTimeout=300"; //25.41.59.168 192.168.169.204 192.168.0.16
+
+        //Перенаправление подключения pgsql
         public NpgsqlConnection connection = new NpgsqlConnection(conn_param);
+
+        //Считыватель значения БД
         NpgsqlDataReader dataReader = null;
+
+        // инструкция SQL для выполнения в базе данных PostgreSQL
         NpgsqlCommand command = null;
 
+        //Экземпляр класса валидации
         ValidationData valid = new ValidationData();
 
+        /// <summary>
+        /// формирования запроса на авторизацию
+        /// </summary>
+        /// <param name="login">логин пользователя</param>
+        /// <param name="password">пароль авторизация</param>
+        /// <returns>роль пользователя</returns>
         public string Authorization(string login, string password)
         {
             try
@@ -56,6 +73,12 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Обновление всей страницы
+        /// </summary>
+        /// <param name="sender">ссылка на элемент управления</param>
+        /// <param name="query">запрос</param>
+        /// <param name="grd">Grid</param>
         public void Refresh(object sender, string query, Grid grd)
         {
             try
@@ -105,6 +128,10 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Выполнение запроса
+        /// </summary>
+        /// <param name="query">запрос</param>
         public void EecuteQuery(string query)
         {
             try
@@ -182,7 +209,12 @@ namespace AutoService
             }
         }
 
-
+        /// <summary>
+        /// Считывание определенного значения из БД
+        /// </summary>
+        /// <param name="query">запрос</param>
+        /// <param name="tablename">название таблицы</param>
+        /// <returns>значение из БД</returns>
         public string EecuteQueryReaderOne(string query, string tablename)
         {
             string data = "";
@@ -210,10 +242,22 @@ namespace AutoService
             }
         }
 
+        //Путь к dump pgsql
         string strPG_dumpPath = "SET PGPASSWORD=1\r\n\r\ncd /D C:\\Program Files\r\n\r\ncd PostgreSQL\r\n\r\ncd 13\r\n\r\ncd bin\r\n\r\n";
-        string strServer = "192.168.231.204";
+        
+        //Ip сервера
+        string strServer = "192.168.0.12";
+
+        //Порт
         string strPort = "5432";
+
+        //Название ДБ
         string strDatabaseName = "AutoService";
+
+        /// <summary>
+        /// Создание файла Backup
+        /// </summary>
+        /// <param name="pathSave">Путь сохранения</param>
         public void Backup(string pathSave)
         {
             try
@@ -243,21 +287,25 @@ namespace AutoService
             { }
         }
 
+        /// <summary>
+        /// Восстановление БД
+        /// </summary>
+        /// <param name="pathFile">путь к резервной копии</param>
         public void Restore(string pathFile)
         {
             strDatabaseName = "ProbaRestore";
             connection.Open();
             try
             {
-                command = new NpgsqlCommand("DROP DATABASE \"ProbaRestore\";", connection);
+                if (new NpgsqlCommand("SELECT 1 as count FROM pg_database WHERE datname='ProbaRestore'", connection).ExecuteScalar().ToString() == "1")
+                {
+                    command = new NpgsqlCommand("DROP DATABASE \"ProbaRestore\";", connection);
+                    command.ExecuteNonQuery();
+                }
+                command = new NpgsqlCommand("Create DATABASE \"ProbaRestore\";", connection);
                 command.ExecuteNonQuery();
-            }
-            catch { }
-            command = new NpgsqlCommand("Create DATABASE \"ProbaRestore\";", connection);
-            command.ExecuteNonQuery();
-            connection.Close();
-            try
-            {
+                connection.Close();
+
                 if (strDatabaseName != "")
                 {
                     if (pathFile != "")
@@ -289,10 +337,15 @@ namespace AutoService
                     MessageBox.Show("Please enter the Database name to Restore!");
                 }
             }
-            catch 
-            { }
+            catch { MessageBox.Show("База данных занята другой программой"); connection.Close(); }
         }
 
+        /// <summary>
+        /// Выборка Данных из DataGrid
+        /// </summary>
+        /// <param name="grd">DataGrid</param>
+        /// <param name="value">Наименование столбца</param>
+        /// <returns></returns>
         public string GetValueData(DataGrid grd, string value)
         {
             try
@@ -334,6 +387,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Формирование запроса на удаление
+        /// </summary>
+        /// <param name="tableName">Название таблицы</param>
+        /// <param name="ID">Уникальный индетификатор</param>
         public void DeleteInto(string tableName, string ID)
         {
             string query = $@"call {tableName}_Delete('{ID}')";
@@ -353,6 +411,11 @@ namespace AutoService
             }
         }
 
+        /// <summary>
+        /// Формирование запроса на обновление данных в БД
+        /// </summary>
+        /// <param name="tableName">название таблицы</param>
+        /// <param name="atributes">данные для добавления</param>
         public void UpdateInto(string tableName, string[] atributes)
         {
             string query = $@"call {tableName}_Update(";
@@ -379,7 +442,13 @@ namespace AutoService
             }
         }
 
-
+        /// <summary>
+        /// Биндинг Combobox
+        /// </summary>
+        /// <param name="comboBox">ComboBox</param>
+        /// <param name="query">Запрос</param>
+        /// <param name="tableNameForDisplay">Выводиме значения</param>
+        /// <param name="tableNameForBinding">Значения выводимых значений</param>
         public void BindComboBox(DataGridComboBoxColumn comboBox,string query, string tableNameForDisplay ,string tableNameForBinding)
         {
             command = new NpgsqlCommand(query, connection);
@@ -394,6 +463,12 @@ namespace AutoService
             comboBox.SelectedValueBinding = new Binding(tableNameForBinding);
         }
 
+        /// <summary>
+        /// Получение значения ячеки DataGrid
+        /// </summary>
+        /// <param name="grd">DataGrid</param>
+        /// <param name="column">Наименование столбца DataGrid</param>
+        /// <returns>значение ячейки</returns>
         public string GetTextComboBox(DataGrid grd, int column)
         {
             DataGridRow row = grd.ItemContainerGenerator.ContainerFromIndex(grd.SelectedIndex) as DataGridRow;

@@ -9,8 +9,16 @@ using System.Windows;
 
 namespace AutoService
 {
+    /// <summary>
+    /// Управление почтовым клиеном
+    /// </summary>
     class EmailHelper
     {
+        /// <summary>
+        /// Отправка электронного письма 
+        /// </summary>
+        /// <param name="email">Электронная почта</param>
+        /// <param name="r">Код для восстановления</param>
         public async Task SendMail(string email, int r)
         {
             // отправитель - устанавливаем адрес и отображаемое в письме имя
@@ -41,7 +49,12 @@ namespace AutoService
             Console.Read();
         }
 
-
+        /// <summary>
+        /// Отправка электронного письма
+        /// </summary>
+        /// <param name="email">электронная почта</param>
+        /// <param name="title">заголовок</param>
+        /// <param name="message">сообщение</param>
         public async Task SendMailOrder(string email, string title, string message)
         {
             // отправитель - устанавливаем адрес и отображаемое в письме имя
